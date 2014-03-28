@@ -150,10 +150,15 @@ public class MainActivity extends ActionBarActivity {
         protected void onPostExecute(String result) {
             if (result != null) {
                 try{
-                    String []  Arreglo = result.split(";");
-                    DataAccess.noPoliza =  Arreglo[0];
-                    DataAccess.noAfiliado = Arreglo[1];
-                    DataAccess.Afiliado = Arreglo[2];
+                    String [] Arreglo = result.split(";");
+
+                    DataAccess.tagID = Long.parseLong(Arreglo[0]);
+                    DataAccess.noPoliza =  Arreglo[1];
+                    DataAccess.noAfiliado = Arreglo[2];
+                    DataAccess.Afiliado = Arreglo[3];
+                    DataAccess.clienteCompany = Arreglo[4];
+                    DataAccess.Plan = Arreglo[5];
+                    DataAccess.FechaNac = Arreglo[6];
 
                     Intent in = new Intent(MainActivity.this, ReaderActivity.class);
                     in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -51,6 +51,9 @@ public class ReaderActivity extends ActionBarActivity {
         noPolizatv = (TextView) findViewById(R.id.tvNoPoliza);
         noAfiliadotv = (TextView) findViewById(R.id.tvNoAfiliado);
         afiliadotv = (TextView) findViewById(R.id.tvAfiliado);
+        clienteCompanytv = (TextView) findViewById(R.id.tvClienteCompany);
+        plantv = (TextView) findViewById(R.id.tvPlan);
+        fechanactv = (TextView) findViewById(R.id.tvFechanac);
 
         iconFechaCorrectatab1 = (ImageView) findViewById(R.id.tab1imgVencimiento);
         estatus = (TextView) findViewById(R.id.tab1Estatus);
@@ -59,8 +62,36 @@ public class ReaderActivity extends ActionBarActivity {
         noAfiliadotv.setText(DataAccess.noAfiliado);
         noPolizatv.setText(DataAccess.noPoliza);
         afiliadotv.setText(DataAccess.Afiliado);
+        clienteCompanytv.setText(DataAccess.clienteCompany);
+        plantv.setText(DataAccess.Plan);
+        fechanactv.setText(DataAccess.FechaNac);
 
+        try{
+
+            if (NFC.CardID == DataAccess.tagID)
+            {
+                iconFechaCorrectatab1.setVisibility(View.VISIBLE);
+                iconFechaCorrectatab1.setImageResource(R.drawable.ic_good_or_tick);
+                estatus.setVisibility(View.VISIBLE);
+                estatus.setText(getString(R.string.Vigente));
+                estatus.setTextColor(Color.parseColor("#2A9E29"));
+            }
+            else {
+                iconFechaCorrectatab1.setVisibility(View.VISIBLE);
+                iconFechaCorrectatab1.setImageResource(R.drawable.ic_banned);
+                estatus.setVisibility(View.VISIBLE);
+                estatus.setText(getString(R.string.Corrupta));
+                estatus.setTextColor(Color.parseColor("#B00B0A"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast msj = Toast.makeText(ReaderActivity.this, getString(R.string.Corrupta), Toast.LENGTH_LONG);
+            msj.setGravity(Gravity.CENTER,0,0);
+            msj.show();
+            finish();
+        }
     }
+
 
 
     public void findPerson(View V) {

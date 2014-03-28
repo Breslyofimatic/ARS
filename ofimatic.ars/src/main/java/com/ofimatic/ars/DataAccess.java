@@ -33,6 +33,7 @@ public class DataAccess {
     protected final String TAG_FECHASISTEMA = "FechaSistema";
     protected final String TAG_FOTO = "Foto";
 
+
     protected static String noPoliza;
     protected static long tagID;
     protected static String Afiliado;
