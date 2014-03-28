@@ -17,7 +17,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Person {
+public class DataAccess {
 
     protected final String TAG_SUCCESS="success";
     protected final String TAG_PERSON = "person";
@@ -33,13 +33,13 @@ public class Person {
     protected final String TAG_FECHASISTEMA = "FechaSistema";
     protected final String TAG_FOTO = "Foto";
 
-    protected static String noDocumento;
+    protected static String noPoliza;
     protected static long tagID;
-    protected static String nombres;
-    protected static String apellidos;
-    protected static String telefono;
-    protected static String direccion;
-    protected static String nacionalidad;
+    protected static String Afiliado;
+    protected static String noAfiliado;
+    protected static String clienteCompany;
+    protected static String Plan;
+    protected static String FechaNac;
     protected static String tipoSangre;
     protected static String fechaVencimiento;
     protected static String fechaSistema;
@@ -59,10 +59,10 @@ public class Person {
         this.context = context;
         // Pasando Parametros
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("NoDocumento",this.noDocumento));
+        params.add(new BasicNameValuePair("NoDocumento",this.noPoliza));
 
         // Chequea el log para el json response
-        Log.d("Person Details", js.toString());
+         Log.d("Data Details", js.toString());
 
         JSONObject jsonObject = js.makeHttpResquest(this.url, "GET", params, context);
 
@@ -82,14 +82,14 @@ public class Person {
             // Obtencion del primer producto en el array
             JSONObject person = personObj.getJSONObject(0);
 
-            noDocumento=person.getString(TAG_DOCUMENTO);
+            noPoliza =person.getString(TAG_DOCUMENTO);
             tagID = person.getLong(TAG_ID);
-            nombres=person.getString(TAG_NOMBRES);
-            apellidos=person.getString(TAG_APELLIDOS);
-            nacionalidad=person.getString(TAG_NACIONALIDAD);
+            Afiliado =person.getString(TAG_NOMBRES);
+            noAfiliado =person.getString(TAG_APELLIDOS);
+            FechaNac =person.getString(TAG_NACIONALIDAD);
             fechaVencimiento=person.getString(TAG_FECHAVENCIMIENTO);
-            telefono=person.getString(TAG_TELEFONO);
-            direccion=person.getString(TAG_DIRECCION);
+            clienteCompany =person.getString(TAG_TELEFONO);
+            Plan =person.getString(TAG_DIRECCION);
             tipoSangre=person.getString(TAG_TIPOSANGRE);
             fechaSistema = person.getString(TAG_FECHASISTEMA);
 
@@ -116,13 +116,13 @@ public class Person {
     {
         this.context = context;
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("NoDocumento",this.noDocumento));
+        params.add(new BasicNameValuePair("NoDocumento",this.noPoliza));
         //params.add(new BasicNameValuePair("tagID", this.tagID);
-        params.add(new BasicNameValuePair("Nombres",this.nombres));
-        params.add(new BasicNameValuePair("Apellidos",this.apellidos));
-        params.add(new BasicNameValuePair("Telefono",this.telefono));
-        params.add(new BasicNameValuePair("Direccion",this.direccion));
-        params.add(new BasicNameValuePair("Nacionalidad",this.nacionalidad));
+        params.add(new BasicNameValuePair("Nombres",this.Afiliado));
+        params.add(new BasicNameValuePair("Apellidos",this.noAfiliado));
+        params.add(new BasicNameValuePair("Telefono",this.clienteCompany));
+        params.add(new BasicNameValuePair("Direccion",this.Plan));
+        params.add(new BasicNameValuePair("Nacionalidad",this.FechaNac));
         params.add(new BasicNameValuePair("TipoSangre",this.tipoSangre));
         params.add(new BasicNameValuePair("FechaVencimiento",this.fechaVencimiento));
         params.add(new BasicNameValuePair("FechaSistema",this.fechaSistema));

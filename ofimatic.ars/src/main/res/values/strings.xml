@@ -17,8 +17,8 @@
 
     <string name="Estatus_Vigente">Vigente</string>
     <string name="Estatus_Vencida">Vencida</string>
-    <string name="FechaVenc">Valido hasta</string>
-    <string name="Nacionalidad">Nacionalidad</string>
+    <string name="NoAfiliado">No. de Afiliado</string>
+    <string name="Afiliado">Afiliado</string>
     <string name="NoPoliza">No. de Poliza</string>
     <string name="Nombre">Nombre</string>
     <string name="Apellido">Apellido</string>
