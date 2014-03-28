@@ -16,6 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.ofimatic.ars.ReaderActivity"
+            android:label="@string/title_activity_reader" >
+        </activity>
+        <activity
+            android:name="com.ofimatic.ars.ReaderOnlineActivity"
+            android:label="@string/title_activity_reader_online" >
+        </activity>
+        <activity
+            android:name="com.ofimatic.ars.ResultActivity"
+            android:label="@string/title_activity_result" >
+        </activity>
     </application>
 
 </manifest>

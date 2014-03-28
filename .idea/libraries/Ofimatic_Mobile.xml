@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Ofimatic.Mobile">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ofimatic.ars/libs/Ofimatic.Mobile.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
