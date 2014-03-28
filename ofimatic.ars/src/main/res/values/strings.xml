@@ -44,5 +44,13 @@
 
     <string name="IntroDocumento">Introduzca un No. de documento</string>
 
+    <string-array name="Serviciosarray">
+        <item>Consulta</item>
+        <item>Procedimientos</item>
+        <item>Laboratorio</item>
+        <item>Emergencias</item>
+        <item>Odontologicos</item>
+    </string-array>
+
 
 </resources>
