@@ -98,9 +98,9 @@ public class MainActivity extends ActionBarActivity {
             DataAccess.noPoliza =  NFC.Arreglo[0];
             DataAccess.noAfiliado = NFC.Arreglo[1];
             DataAccess.Afiliado = NFC.Arreglo[2];
-            DataAccess.clienteCompany =  NFC.Arreglo[3];
-            DataAccess.Plan =  NFC.Arreglo[4];
-            DataAccess.FechaNac =  NFC.Arreglo[5];
+//            DataAccess.clienteCompany =  NFC.Arreglo[3];
+//            DataAccess.Plan =  NFC.Arreglo[4];
+//            DataAccess.FechaNac =  NFC.Arreglo[5];
 
             Intent in = new Intent(MainActivity.this, ReaderActivity.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

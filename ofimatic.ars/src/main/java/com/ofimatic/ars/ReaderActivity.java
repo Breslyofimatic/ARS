@@ -26,8 +26,8 @@ public class ReaderActivity extends ActionBarActivity {
     DataAccess dataAccess = new DataAccess();
     String error;
     ProgressDialog progressdialog;
-    TextView noAfiliadotv;
     TextView noPolizatv;
+    TextView noAfiliadotv;
     TextView afiliadotv;
 
     /*****************************************/
