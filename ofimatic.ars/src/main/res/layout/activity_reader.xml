@@ -9,8 +9,111 @@
     tools:context="com.ofimatic.ars.ReaderActivity">
 
     <TextView
-        android:text="@string/hello_world"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tab1TV1"
+        android:text="@string/FechaVenc"
+        android:layout_marginTop="190dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tab1Vencimiento"
+        android:layout_below="@+id/tab1TV1"
+        android:layout_marginTop="2dp"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tab1TV2"
+        android:text="@string/NoPoliza"
+        android:layout_below="@+id/tab1Vencimiento"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tab1Documento"
+        android:layout_below="@+id/tab1TV2"
+        android:layout_marginTop="2dp"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tab1TV3"
+        android:text="@string/Nacionalidad"
+        android:layout_below="@+id/tab1Documento"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tab1Nacionalidad"
+        android:layout_below="@+id/tab1TV3"
+        android:layout_marginTop="2dp"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:id="@+id/tab1imageView"
+        android:src="@drawable/ic_carnet"
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="25dp"
+        android:id="@+id/tab1imgVencimiento"
+        android:visibility="gone"
+        android:layout_toRightOf="@id/tab1imageView"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tab1Estatus"
+        android:layout_below="@+id/tab1imgVencimiento"
+        android:layout_marginTop="1dp"
+        android:layout_toRightOf="@id/tab1imageView"
+        android:layout_marginLeft="25dp"
+        android:textSize="26sp"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Mas_detalles"
+        android:layout_centerHorizontal="true"
+        android:drawableRight="@drawable/ic_search"
+        android:id="@+id/buttonDetalles"
+        android:onClick="findPerson"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        android:background="@drawable/mybuttons"/>
+
+
 
 </RelativeLayout>
