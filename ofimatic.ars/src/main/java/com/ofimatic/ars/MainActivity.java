@@ -1,9 +1,15 @@
 package com.ofimatic.ars;
 
 import android.content.Intent;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
+import android.nfc.Tag;
+import android.nfc.tech.Ndef;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,9 +17,13 @@ import android.widget.Toast;
 
 import com.ofimatic.library.NFC;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+
 public class MainActivity extends ActionBarActivity {
 
    NFC nfcClass = new NFC ();
+   protected final String TAG = "NfcDemo";
    private NfcAdapter mNfcAdapter;
 
     @Override
@@ -22,23 +32,16 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        NFC.MIME_TEXT_PLAIN = "application/com.ofimatic.ars";
+        NFC.MIMETYPE = "application/com.ofimatic.ars".getBytes();
+
         nfcClass.VerificationNFC(mNfcAdapter, MainActivity.this, okProcess(), cancelProcess());
 
         Boolean read = nfcClass.handleIntent(getIntent());
 
         if (read)
         {
-            DataAccess.noPoliza =  NFC.Arreglo[0];
-            DataAccess.noAfiliado = NFC.Arreglo[1];
-            DataAccess.Afiliado = NFC.Arreglo[2];
-            DataAccess.clienteCompany =  NFC.Arreglo[3];
-            DataAccess.Plan =  NFC.Arreglo[4];
-            DataAccess.FechaNac =  NFC.Arreglo[5];
-
-            Intent in = new Intent(MainActivity.this, ReaderActivity.class);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            in.putExtra("EXIT", true);
-            startActivity(in);
+            new NdefReaderTask().execute(NFC.tag);
         }
     }
 
@@ -95,17 +98,81 @@ public class MainActivity extends ActionBarActivity {
 
         if (read)
         {
-            DataAccess.noPoliza =  NFC.Arreglo[0];
-            DataAccess.noAfiliado = NFC.Arreglo[1];
-            DataAccess.Afiliado = NFC.Arreglo[2];
-//            DataAccess.clienteCompany =  NFC.Arreglo[3];
-//            DataAccess.Plan =  NFC.Arreglo[4];
-//            DataAccess.FechaNac =  NFC.Arreglo[5];
+            new NdefReaderTask().execute(NFC.tag);
+        }
+    }
 
-            Intent in = new Intent(MainActivity.this, ReaderActivity.class);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            in.putExtra("EXIT", true);
-            startActivity(in);
+    /**
+     * Proceso para obtener los datos de la tarjeta.
+     */
+    private class NdefReaderTask extends AsyncTask<Tag, Void, String> {
+
+        @Override
+        protected void onPreExecute(){
+            Log.d("Pre-Execute", "en pre-execute");
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Tag... params) {
+            Tag tag = params[0];
+
+            Ndef ndef = Ndef.get(tag);
+            if (ndef == null) {
+                // NDEF is not supported by this Tag.
+                return null;
+            }
+
+            NdefMessage ndefMessage = ndef.getCachedNdefMessage();
+
+            if(ndefMessage!=null){
+                NdefRecord[] records = ndefMessage.getRecords();
+                for (NdefRecord ndefRecord : records) {
+
+                    if (ndefRecord.getTnf() == NdefRecord.TNF_MIME_MEDIA && Arrays.equals(ndefRecord.getType(), NFC.MIMETYPE)) {
+                        try {
+                            return readText(ndefRecord);
+                        } catch (UnsupportedEncodingException e) {
+                            Log.e(TAG, "Unsupported Encoding", e);
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        private String readText(NdefRecord record) throws UnsupportedEncodingException {
+            byte[] payload = record.getPayload();
+            return new String(payload);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if (result != null) {
+                try{
+                    String []  Arreglo = result.split(";");
+                    DataAccess.noPoliza =  Arreglo[0];
+                    DataAccess.noAfiliado = Arreglo[1];
+                    DataAccess.Afiliado = Arreglo[2];
+
+                    Intent in = new Intent(MainActivity.this, ReaderActivity.class);
+                    in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    in.putExtra("EXIT", true);
+                    startActivity(in);
+                }
+                catch (Exception e)
+                {
+                    Toast msj = Toast.makeText(MainActivity.this,"Error Data Incorrecta",Toast.LENGTH_SHORT);
+                    msj.setGravity(Gravity.CENTER,0,0);
+                    msj.show();
+                }
+            }
+            else
+            {
+                Toast msj = Toast.makeText(MainActivity.this,"Error Data Incorrecta",Toast.LENGTH_SHORT);
+                msj.setGravity(Gravity.CENTER,0,0);
+                msj.show();
+            }
         }
     }
 

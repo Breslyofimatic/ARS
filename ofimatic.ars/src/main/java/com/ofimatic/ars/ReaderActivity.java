@@ -89,7 +89,7 @@ public class ReaderActivity extends ActionBarActivity {
         protected Void doInBackground(Void ... arg0) {
             // Actualiza la UI desde un hilo
             try {
-                DataAccess.noPoliza = NFC.Arreglo[0];
+                //DataAccess.noPoliza = NFC.Arreglo[0];
                 JSONObject json =  dataAccess.getProfile(ReaderActivity.this);
                 error= "";
             }
