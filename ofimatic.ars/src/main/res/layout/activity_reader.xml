@@ -158,6 +158,22 @@
         android:layout_centerHorizontal="true"/>
 
 
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Mas_detalles"
+            android:layout_centerHorizontal="true"
+            android:drawableRight="@drawable/ic_search"
+            android:id="@+id/buttonDetalles"
+            android:onClick="findPerson"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/tvFechanac"
+            android:textAlignment="center"
+            android:textSize="26sp"
+            android:background="@drawable/mybuttons"/>
+
+
     <ImageView
         android:layout_width="160dp"
         android:layout_height="160dp"
@@ -185,19 +201,7 @@
         android:layout_marginLeft="25dp"
         android:textSize="26sp"/>
 
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Mas_detalles"
-        android:layout_centerHorizontal="true"
-        android:drawableRight="@drawable/ic_search"
-        android:id="@+id/buttonDetalles"
-        android:onClick="findPerson"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:textAlignment="center"
-        android:textSize="26sp"
-        android:background="@drawable/mybuttons"/>
+
 
     </RelativeLayout>
     </ScrollView>
