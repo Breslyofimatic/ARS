@@ -2,6 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context="com.ofimatic.ars.ReaderOnlineActivity">
+
+    <ScrollView android:id="@+id/ScrollView02"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        android:fadeScrollbars="false"
+        >
+
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -12,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/tvNoPoliza"
+        android:id="@+id/poliza"
         android:text="@string/NoPoliza"
         android:layout_marginTop="190dp"
         android:layout_alignParentLeft="true"
@@ -22,42 +37,64 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/tab1Vencimiento"
-        android:layout_below="@+id/tvNoPoliza"
+        android:id="@+id/tvNoPoliza"
+        android:layout_below="@+id/poliza"
         android:layout_marginTop="2dp"
         android:textSize="26sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/noafiliado"
+        android:text="@string/NoAfiliado"
+        android:layout_below="@+id/tvNoPoliza"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/tvNoAfiliado"
-        android:text="@string/NoAfiliado"
-        android:layout_below="@+id/tab1Vencimiento"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_below="@+id/noafiliado"
+        android:layout_marginTop="2dp"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/tab1Documento"
+        android:id="@+id/afiliado"
+        android:text="@string/Afiliado"
         android:layout_below="@+id/tvNoAfiliado"
-        android:layout_marginTop="2dp"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/tvAfiliado"
-        android:text="@string/Afiliado"
-        android:layout_below="@+id/tab1Documento"
+        android:layout_below="@+id/afiliado"
+        android:layout_marginTop="2dp"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/cliente"
+        android:text="Cliente"
+        android:layout_below="@+id/tvAfiliado"
         android:layout_marginTop="10dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
@@ -66,12 +103,59 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/tab1Nacionalidad"
-        android:layout_below="@+id/tvAfiliado"
+        android:id="@+id/tvClienteCompany"
+        android:layout_below="@+id/cliente"
         android:layout_marginTop="2dp"
         android:textSize="26sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/plan"
+        android:text="Plan"
+        android:layout_below="@+id/tvClienteCompany"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tvPlan"
+        android:layout_below="@+id/plan"
+        android:layout_marginTop="2dp"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/fechanac"
+        android:text="Fecha de Nacimiento"
+        android:layout_below="@+id/tvPlan"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tvFechanac"
+        android:layout_below="@+id/fechanac"
+        android:layout_marginTop="2dp"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
 
     <ImageView
         android:layout_width="160dp"
@@ -114,6 +198,7 @@
         android:textSize="26sp"
         android:background="@drawable/mybuttons"/>
 
-
+    </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>
