@@ -35,7 +35,7 @@ public class MainActivity extends ActionBarActivity {
         NFC.MIME_TEXT_PLAIN = "application/com.ofimatic.ars";
         NFC.MIMETYPE = "application/com.ofimatic.ars".getBytes();
 
-        nfcClass.VerificationNFC(mNfcAdapter, MainActivity.this, okProcess(), cancelProcess());
+        nfcClass.VerificationNFC(mNfcAdapter, this, okProcess(), cancelProcess());
 
         Boolean read = nfcClass.handleIntent(getIntent());
 

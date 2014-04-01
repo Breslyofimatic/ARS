@@ -160,15 +160,14 @@
 
         <Button
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:text="@string/Mas_detalles"
             android:layout_centerHorizontal="true"
             android:drawableRight="@drawable/ic_search"
             android:id="@+id/buttonDetalles"
             android:onClick="findPerson"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
             android:layout_below="@id/tvFechanac"
+            android:layout_marginTop="25dp"
             android:textAlignment="center"
             android:textSize="26sp"
             android:background="@drawable/mybuttons"/>

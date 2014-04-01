@@ -227,7 +227,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/ROTV10"
-                android:text="Estatus"
+                android:text="Dirección"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/tvFechaentRO"
                 android:layout_alignParentLeft="true"
@@ -237,9 +237,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/tvEstatusRO"
+                android:id="@+id/tvDireccionRO"
                 android:layout_marginTop="2dp"
                 android:layout_below="@+id/ROTV10"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/ROTV11"
+                android:text="Telefono"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/tvDireccionRO"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvTelefonoRO"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/ROTV11"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 android:layout_centerHorizontal="true"/>
@@ -249,14 +272,17 @@
                 android:layout_height="wrap_content"
                 android:prompt="@string/app_name"
                 android:id="@+id/SpinServicios"
-                android:layout_below="@+id/ROTV10"
+                android:layout_below="@+id/tvTelefonoRO"
                 />
 
             <Button
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_below="@+id/SpinServicios"
                 android:text="Autorizar Servicios"
+                android:layout_marginTop="25dp"
+                android:textSize="26sp"
+                android:textStyle="bold"
                 android:background="@drawable/mybuttons"/>
 
 
@@ -280,7 +306,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/FPMEstatus"
+                android:id="@+id/tvEstatusRO"
                 android:layout_below="@+id/FPMimgVencimiento"
                 android:layout_marginTop="1dp"
                 android:layout_toRightOf="@id/FPMimageView"

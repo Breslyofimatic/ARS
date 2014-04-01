@@ -30,8 +30,8 @@
 
     <string name="Consultar">Consultar</string>
 
-    <string name="Vigente">Vigente</string>
-    <string name="Vencida">Vencida</string>
+    <string name="Activo">Activo</string>
+    <string name="Inactivo">Inactivo</string>
     <string name="Corrupta">Error! Fecha de vencimiento corrupta</string>
     <string name="Buscando">Buscando....</string>
     <string name="NoConection">Error de conexión, por favor verificar</string>
@@ -41,16 +41,6 @@
 
     <string name="DataError">Datos erroneos</string>
     <string name="DataInc">Datos incorrectos</string>
-
-    <string name="IntroDocumento">Introduzca un No. de documento</string>
-
-    <string-array name="Serviciosarray">
-        <item>Consulta</item>
-        <item>Procedimientos</item>
-        <item>Laboratorio</item>
-        <item>Emergencias</item>
-        <item>Odontologicos</item>
-    </string-array>
 
 
 </resources>

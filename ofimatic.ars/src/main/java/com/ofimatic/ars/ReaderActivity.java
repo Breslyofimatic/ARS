@@ -73,7 +73,7 @@ public class ReaderActivity extends ActionBarActivity {
                 iconFechaCorrectatab1.setVisibility(View.VISIBLE);
                 iconFechaCorrectatab1.setImageResource(R.drawable.ic_good_or_tick);
                 estatus.setVisibility(View.VISIBLE);
-                estatus.setText(getString(R.string.Vigente));
+                estatus.setText(getString(R.string.Activo));
                 estatus.setTextColor(Color.parseColor("#2A9E29"));
             }
             else {
@@ -95,13 +95,13 @@ public class ReaderActivity extends ActionBarActivity {
 
 
     public void findPerson(View V) {
-        new GetPerson().execute((Void[]) null);
+        new GetAfiliado().execute((Void[]) null);
     }
 
     /**
      * Proceso para obtener los datos de una persona.
      */
-    class GetPerson extends AsyncTask<Void, Void, Void> {
+    class GetAfiliado extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute(){
