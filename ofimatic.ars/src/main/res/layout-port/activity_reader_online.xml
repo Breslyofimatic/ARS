@@ -8,7 +8,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fillViewport="true"
-        android:fadeScrollbars="true"
+        android:fadeScrollbars="false"
         >
 
 
@@ -269,13 +269,16 @@
 
 
             <Button
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_below="@+id/tvTelefonoRO"
                 android:text="Autorizar Servicios"
                 android:layout_marginTop="25dp"
                 android:textSize="26sp"
                 android:textStyle="bold"
+                android:paddingLeft="10dp"
+                android:layout_centerHorizontal="true"
+                android:paddingRight="10dp"
                 android:background="@drawable/mybuttons"
                 android:onClick="AutorizarServ" />
 

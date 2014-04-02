@@ -37,4 +37,7 @@
     <string name="DataInc">Datos incorrectos</string>
     <string name="title_activity_authorize">AuthorizeActivity</string>
 
+    <string name="ServiciosPromtp">Servicios</string>
+    <string name="MedicosPromtp">Medicos</string>
+
 </resources>
