@@ -193,14 +193,15 @@ public class DataAccess {
         return jsonObject;
     }
 
-
-
+    public static String descuento;
     public String findServicesID(int index)
     {
         String id;
+
         try{
             JSONObject c = servicesArray.getJSONObject(index);
             id = c.getString(TAG_IDSERVICIO);
+            descuento = c.getString(TAG_DESCUENTOSERVICIO);
         }
         catch (JSONException e) {
             throw new RuntimeException(e);
@@ -219,7 +220,7 @@ public class DataAccess {
                 JSONObject c = medicoArray.getJSONObject(i);
 
                 if (c.getString(TAG_IDSERVICIO).equals(serviceID)) {
-                    names.add(c.getString(TAG_NOMBREMEDICO));
+                    names.add(c.getString(TAG_IDMEDICO) + ";" + c.getString(TAG_NOMBREMEDICO));
                 }
             }
         }

@@ -80,7 +80,7 @@ public class ReaderActivity extends ActionBarActivity {
                 iconFechaCorrectatab1.setVisibility(View.VISIBLE);
                 iconFechaCorrectatab1.setImageResource(R.drawable.ic_banned);
                 estatus.setVisibility(View.VISIBLE);
-                estatus.setText(getString(R.string.Corrupta));
+                estatus.setText(getString(R.string.Invalida));
                 estatus.setTextColor(Color.parseColor("#B00B0A"));
             }
         } catch (Exception e) {
@@ -141,10 +141,10 @@ public class ReaderActivity extends ActionBarActivity {
                 {
                     if (DataAccess.encontrado){
                         //Validación del Tag ID:
-                        if (NFC.CardID == dataAccess.tagID){
+                       // if (NFC.CardID == dataAccess.tagID){
                             Intent intent = new Intent(ReaderActivity.this, ReaderOnlineActivity.class);
                             startActivity(intent);
-                        }
+                        /*}
                         else {
                             iconFechaCorrectatab1.setVisibility(View.VISIBLE);
                             iconFechaCorrectatab1.setImageResource(R.drawable.ic_error);
@@ -152,7 +152,7 @@ public class ReaderActivity extends ActionBarActivity {
                             estatus.setText(getString(R.string.Invalida));
                             estatus.setTextColor(Color.parseColor("#B00B0A"));
                             btndetalles.setVisibility(View.GONE);
-                        }
+                        }*/
                     }
                     else {
                         Toast msj = Toast.makeText(ReaderActivity.this, getString(R.string.NotFound), Toast.LENGTH_LONG);
