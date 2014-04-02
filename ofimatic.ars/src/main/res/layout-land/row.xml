@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:padding="3dip"
 
     >
@@ -20,7 +19,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"/>
+        android:textSize="22sp"/>
 
     <!--<TextView-->
         <!--android:textColor="#0000FF"-->

@@ -4,13 +4,9 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-        android:drawable="@drawable/buttonpressed" /> <!-- pressed -->
+        android:drawable="@drawable/listgrad" /> <!-- pressed -->
     <!--<item android:state_focused="true"-->
-
-      <!--android:drawable="@drawable/buttonfocused" /> &lt;!&ndash; focused &ndash;&gt;-->
-
-    <item android:drawable="@drawable/listgrad" /> <!-- default -->
-
-
+    <!--android:drawable="@drawable/buttonfocused" /> &lt;!&ndash; focused &ndash;&gt;-->
+    <item android:drawable="@drawable/buttonpressed" /><!-- default -->
 
 </selector>

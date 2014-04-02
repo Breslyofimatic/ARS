@@ -1,0 +1,314 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ofimatic.ars.ReaderOnlineActivity">
+
+    <ScrollView android:id="@+id/ScrollViewRO"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        android:fadeScrollbars="true"
+        >
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:background="#9EC4FF"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/ROTV1"
+                android:text="No. de poliza"
+                android:layout_marginTop="190dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvNoPolizaRO"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/ROTV1"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/ROTV2"
+                android:text="No. de Afiliado"
+                android:layout_below="@+id/tvNoPolizaRO"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvNoAfiliadoRO"
+                android:layout_below="@+id/ROTV2"
+                android:layout_marginTop="2dp"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/ROTV3"
+                android:text="Afiliado"
+                android:layout_below="@+id/tvNoAfiliadoRO"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvAfiliadoRO"
+                android:layout_below="@+id/ROTV3"
+                android:layout_marginTop="2dp"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/ROTV4"
+                android:text="Cliente"
+                android:layout_below="@id/tvAfiliadoRO"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvClienteRO"
+                android:layout_below="@+id/ROTV4"
+                android:layout_marginTop="2dp"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/ROTV5"
+                android:text="Plan"
+                android:layout_below="@+id/tvClienteRO"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvPlanRO"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/ROTV5"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/ROTV6"
+                android:text="Fecha de Nacimiento"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/tvPlanRO"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvFechanacRO"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/ROTV6"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/ROTV7"
+                android:text="Tipo de Sangre"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/tvFechanacRO"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvTipoSangreRO"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/ROTV7"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/ROTV8"
+                android:text="NSS"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/tvTipoSangreRO"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvNSSRO"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/ROTV8"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/ROTV9"
+                android:text="Fecha de Entrada"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/tvNSSRO"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvFechaentRO"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/ROTV9"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/ROTV10"
+                android:text="Dirección"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/tvFechaentRO"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvDireccionRO"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/ROTV10"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/ROTV11"
+                android:text="Telefono"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/tvDireccionRO"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvTelefonoRO"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/ROTV11"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
+
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tvTelefonoRO"
+                android:text="Autorizar Servicios"
+                android:layout_marginTop="25dp"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:background="@drawable/mybuttons"
+                android:onClick="AutorizarServ" />
+
+
+
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:id="@+id/FPMimageView"
+                android:layout_alignParentTop="true" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="35dp"
+                android:id="@+id/FPMimgVencimiento"
+                android:visibility="gone"
+                android:layout_toRightOf="@id/FPMimageView"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tvEstatusRO"
+                android:layout_below="@+id/FPMimgVencimiento"
+                android:layout_marginTop="1dp"
+                android:layout_toRightOf="@id/FPMimageView"
+                android:layout_marginLeft="25dp"
+                android:textSize="26sp"/>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

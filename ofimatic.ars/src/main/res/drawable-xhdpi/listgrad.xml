@@ -2,10 +2,10 @@
     android:shape="rectangle">
     <gradient
         android:startColor="#FFFFFF"
-        android:endColor="#33b5e5"
+        android:endColor="#3355ff"
         android:gradientRadius="2000"
         android:angle="-270"
-        android:centerColor="#BFDBFF"
+
     />
 
     </shape>

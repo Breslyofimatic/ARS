@@ -1,0 +1,217 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ofimatic.ars.ReaderActivity">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="30dp"
+        android:background="#9EC4FF"
+        android:id="@+id/relative1"
+        tools:context="com.ofimatic.ars.ReaderActivity">
+
+
+
+
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:id="@+id/tab1imageView"
+                android:src="@drawable/ic_carnet"
+                android:layout_alignParentTop="true"
+                android:visibility="visible"/>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="25dp"
+                android:id="@+id/tab1imgVencimiento"
+                android:visibility="visible"
+                android:layout_toRightOf="@id/tab1imageView"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tab1Estatus"
+                android:layout_below="@+id/tab1imageView"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"
+                android:textSize="26sp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="@string/Mas_detalles"
+                android:layout_centerHorizontal="true"
+                android:drawableRight="@drawable/ic_search"
+                android:id="@+id/buttonDetalles"
+                android:onClick="findPerson"
+                android:layout_below="@id/tab1Estatus"
+                android:layout_marginTop="25dp"
+                android:textAlignment="center"
+                android:paddingLeft="10dp"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:background="@drawable/mybuttons"/>
+
+    </RelativeLayout>
+
+        <ScrollView android:id="@+id/ScrollView02"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="true"
+            android:fadeScrollbars="false"
+            android:layout_toRightOf="@+id/relative1">
+
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#9EC4FF">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/poliza"
+                        android:text="@string/NoPoliza"
+                        android:layout_marginTop="20dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/tvNoPoliza"
+                        android:layout_below="@+id/poliza"
+                        android:layout_marginTop="2dp"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/noafiliado"
+                        android:text="@string/NoAfiliado"
+                        android:layout_below="@+id/tvNoPoliza"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/tvNoAfiliado"
+                        android:layout_below="@+id/noafiliado"
+                        android:layout_marginTop="2dp"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/afiliado"
+                        android:text="@string/Afiliado"
+                        android:layout_below="@+id/tvNoAfiliado"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/tvAfiliado"
+                        android:layout_below="@+id/afiliado"
+                        android:layout_marginTop="2dp"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/cliente"
+                        android:text="Cliente"
+                        android:layout_below="@+id/tvAfiliado"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/tvClienteCompany"
+                        android:layout_below="@+id/cliente"
+                        android:layout_marginTop="2dp"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/plan"
+                        android:text="Plan"
+                        android:layout_below="@+id/tvClienteCompany"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/tvPlan"
+                        android:layout_below="@+id/plan"
+                        android:layout_marginTop="2dp"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/fechanac"
+                        android:text="Fecha de Nacimiento"
+                        android:layout_below="@+id/tvPlan"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/tvFechanac"
+                        android:layout_below="@+id/fechanac"
+                        android:layout_marginTop="2dp"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="25dp"/>
+
+
+            </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
