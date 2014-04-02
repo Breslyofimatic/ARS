@@ -18,10 +18,10 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.ofimatic.ars.MainActivity"
-            android:configChanges="orientation|screenSize" >
+            android:configChanges="orientation|screenSize"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
@@ -45,22 +45,26 @@
         <activity
             android:name="com.ofimatic.ars.ReaderActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_reader" >
+            android:label="@string/title_activity_reader"
+            android:noHistory="true">
         </activity>
         <activity
             android:name="com.ofimatic.ars.ReaderOnlineActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_reader_online" >
+            android:label="@string/title_activity_reader_online"
+            android:noHistory="true">
         </activity>
         <activity
             android:name="com.ofimatic.ars.ResultActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_result" >
+            android:label="@string/title_activity_result"
+            android:noHistory="true">
         </activity>
         <activity
             android:name="com.ofimatic.ars.AuthorizeActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_authorize" >
+            android:label="@string/title_activity_authorize"
+            android:noHistory="true">
         </activity>
     </application>
 
