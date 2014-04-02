@@ -7,14 +7,12 @@
     <string name="title_activity_reader">Información del paciente</string>
     <string name="title_activity_reader_online">ReaderOnlineActivity</string>
     <string name="title_activity_result">ResultActivity</string>
-
     <string name="title_section1">Datos del ciudadano</string>
     <string name="title_section2">Más detalles</string>
     <string name="title_activity_manual">Consulta manual</string>
     <string name="manual_ID_button">Ingresar No. de documento</string>
     <string name="title_activity_main">Migración</string>
     <string name="title_activity_find_person_manual">Detalle del ciudadano</string>
-
     <string name="Estatus_Vigente">Vigente</string>
     <string name="Estatus_Vencida">Vencida</string>
     <string name="NoAfiliado">No. de Afiliado</string>
@@ -25,11 +23,8 @@
     <string name="Direccion">Dirección</string>
     <string name="Telefono">Telefono</string>
     <string name="Tipo_de_sangre">Tipo de sangre</string>
-
     <string name="Mas_detalles">Verificar Poliza</string>
-
     <string name="Consultar">Consultar</string>
-
     <string name="Activo">Activo</string>
     <string name="Inactivo">Inactivo</string>
     <string name="Corrupta">Error! Fecha de vencimiento corrupta</string>
@@ -38,9 +33,8 @@
     <string name="Invalida">Tarjeta invalida</string>
     <string name="NotFound">Registro no encontrado</string>
     <string name="ErrorSystem">Error del sistema</string>
-
     <string name="DataError">Datos erroneos</string>
     <string name="DataInc">Datos incorrectos</string>
-
+    <string name="title_activity_authorize">AuthorizeActivity</string>
 
 </resources>

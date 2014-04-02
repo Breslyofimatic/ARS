@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ofimatic.ars" >
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.NFC" />
@@ -13,22 +12,22 @@
 
     <application
         android:allowBackup="true"
+        android:configChanges="orientation|screenSize"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
         android:launchMode="singleTask"
-        android:configChanges="orientation|screenSize">
+        android:theme="@style/AppTheme" >
         <activity
             android:name="com.ofimatic.ars.MainActivity"
-            android:configChanges="orientation|screenSize"
-             >
+            android:configChanges="orientation|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
@@ -38,7 +37,9 @@
 
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="application/com.ofimatic.ars" />
             </intent-filter>
         </activity>
@@ -56,6 +57,10 @@
             android:name="com.ofimatic.ars.ResultActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_result" >
+        </activity>
+        <activity
+            android:name="com.ofimatic.ars.AuthorizeActivity"
+            android:label="@string/title_activity_authorize" >
         </activity>
     </application>
 

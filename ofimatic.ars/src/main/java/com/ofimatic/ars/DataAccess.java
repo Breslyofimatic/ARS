@@ -37,6 +37,14 @@ public class DataAccess {
     protected final String TAG_FECHAEMISION = "FechaEmision";
     protected final String TAG_FOTO = "Foto";
 
+    protected final String TAG_MEDICO = "Medico";
+    protected final String TAG_IDMEDICO = "IDMedico";
+    protected final String TAG_NOMBREMEDICO= "NombreMedico";
+
+    protected final String TAG_SERVICIO = "Servicio";
+    protected final String TAG_IDSERVICIO = "IDServicio";
+    protected final String TAG_NOMBRESERVICIO= "NombreServicio";
+    protected final String TAG_DESCUENTOSERVICIO = "DescuentoServicio";
 
     protected static String noPoliza;
     protected static long tagID;
@@ -53,11 +61,19 @@ public class DataAccess {
     protected static String fechaEmision;
     protected static Bitmap foto;
     protected static String url = "http://ofimatic-mobile.com/PHPConnections/ARS/SelectAfiliado.php";
+    protected static String urlAllMedic = "http://ofimatic-mobile.com/PHPConnections/ARS/SelectAllMedico.php";
+    protected static String urlAllServices = "http://ofimatic-mobile.com/PHPConnections/ARS/SelectAllServices.php";
+
     protected static Context context;
 
     public static Boolean encontrado = false;
 
     JsonParser js= new JsonParser();
+    public static String[] servicesName;
+    public static String[] medicNames;
+    public  static JSONArray servicesArray;
+    public static JSONArray medicoArray;
+
 
     /**
      * Obtiene la informacion del documento consultado.
@@ -124,6 +140,161 @@ public class DataAccess {
 
         return jsonObject;
     }
+
+
+    /**
+     * Obtiene la informacion del documento consultado.
+     */
+    public JSONObject getAllMedic(Context context)
+    {
+        this.context = context;
+        // Pasando Parametros
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("NoAfiliado", ""));
+
+        // Chequea el log para el json response
+        Log.d("Data Details", js.toString());
+
+        JSONObject jsonObject = js.makeHttpResquest(this.urlAllMedic, "GET", params, context);
+
+        int success=0;
+
+        // json success tag
+        try {
+            success = jsonObject.getInt(TAG_SUCCESS);
+
+            if (success == 1) {
+
+                encontrado=true;
+                // Obtencion del producto.
+                medicoArray = jsonObject.getJSONArray(TAG_MEDICO); // JSON Array
+
+                /*final String[]*/
+                medicNames = new String[medicoArray.length()];
+
+                // looping through All Contacts
+                for(int i = 0; i < medicoArray.length(); i++){
+
+                    JSONObject c = medicoArray.getJSONObject(i);
+                    // Storing each json item in variable
+                    medicNames[i]=c.getString(TAG_NOMBREMEDICO);
+                    //System.out.println("Hello events "+items);
+                }
+
+               }
+            else{
+                //registro no encontrado
+                encontrado=false;
+            }
+
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        return jsonObject;
+    }
+
+
+
+    public String findServicesID(int index)
+    {
+        String id;
+        try{
+            JSONObject c = servicesArray.getJSONObject(index);
+            id = c.getString(TAG_IDSERVICIO);
+        }
+        catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        return  id;
+    }
+
+    public String [] ListMedics(String serviceID)
+    {
+        List<String> names = new ArrayList<String>();
+
+        //String names[] = new String[medicoArray.length()];
+        try{
+            for(int i = 0; i < medicoArray.length(); i++){
+
+                JSONObject c = medicoArray.getJSONObject(i);
+
+                if (c.getString(TAG_IDSERVICIO).equals(serviceID)) {
+                    names.add(c.getString(TAG_NOMBREMEDICO));
+                }
+            }
+        }
+        catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        return  names.toArray(new String[names.size()]);
+    }
+
+    public String findMedicID(int index)
+    {
+        String id;
+        try{
+            JSONObject c = medicoArray.getJSONObject(index);
+            id = c.getString(TAG_IDMEDICO);
+        }
+        catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        return  id;
+    }
+    /**
+     * Obtiene la informacion del documento consultado.
+     */
+    public JSONObject getAllServices(Context context)
+    {
+        this.context = context;
+        // Pasando Parametros
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("NoAfiliado", ""));
+
+        // Chequea el log para el json response
+        Log.d("Data Details", js.toString());
+
+        JSONObject jsonObject = js.makeHttpResquest(this.urlAllServices, "GET", params, context);
+
+        int success=0;
+
+        // json success tag
+        try {
+            success = jsonObject.getInt(TAG_SUCCESS);
+
+            if (success == 1) {
+
+                encontrado=true;
+                // Obtencion del producto.
+                servicesArray = jsonObject.getJSONArray(TAG_SERVICIO); // JSON Array
+
+                /*final String[]*/
+                servicesName = new String[servicesArray.length()];
+
+                // looping through All Contacts
+                for(int i = 0; i < servicesArray.length(); i++){
+
+                    JSONObject c = servicesArray.getJSONObject(i);
+                    // Storing each json item in variable
+
+                    servicesName[i]=c.getString(TAG_NOMBRESERVICIO);
+                    //System.out.println("Hello events "+items);
+                }
+
+            }
+            else{
+                //registro no encontrado
+                encontrado=false;
+            }
+
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        return jsonObject;
+    }
+
 
     /**
      * Guarda la informacion de un documento.
