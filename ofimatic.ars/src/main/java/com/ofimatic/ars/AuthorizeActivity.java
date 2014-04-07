@@ -40,7 +40,7 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
     public static String afiliado;
     public static String serv;
     public static String medic;
-    public static  double mont;
+    public static double mont;
     public static double desc;
     public static double total;
 
@@ -65,24 +65,27 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
 
     public void bottonProcesar(View view)
     {
-         afiliado = DataAccess.noAfiliado;
-         serv = servicesID;
-         medic = idMedico;
-         mont = Double.parseDouble(monto.getText().toString());
-         desc = Double.parseDouble(DataAccess.descuento);
+        // afiliado = DataAccess.noAfiliado;
+         DataAccess.idServicio = servicesID;
+         dataAccess.idMedico = idMedico;
+         dataAccess.montoServicio = monto.getText().toString();
 
-            desc = mont * desc / 100;
+        new GetProcedure().execute((Void[]) null);
 
-            total = mont - desc;
+//         desc = Double.parseDouble(DataAccess.descuento);
+//
+//            desc = mont * desc / 100;
+//
+//            total = mont - desc;
 
-        Intent intent = new Intent(AuthorizeActivity.this, ResultActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(AuthorizeActivity.this, ResultActivity.class);
+//        startActivity(intent);
         //new GetProcedure().execute((Void[]) null);
     }
 
 
     /**
-     * Proceso para obtener el procedimiento.
+     * Procesa el pago del servicio.
      */
     class GetProcedure extends AsyncTask<Void, Void, Void> {
 
@@ -93,7 +96,7 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
             StrictMode.enableDefaults();
             //Progress Dialogo aparece un Mensaje mientras se Busca el producto seleccionado
             progressdialog = new ProgressDialog(AuthorizeActivity.this);
-            progressdialog.setMessage(getString(R.string.Buscando));
+            progressdialog.setMessage(getString(R.string.Procesando));
             progressdialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressdialog.setIndeterminate(false);
             progressdialog.setCancelable(false);
@@ -104,8 +107,7 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
             // Actualiza la UI desde un hilo
             try {
                 //DataAccess.noPoliza = NFC.Arreglo[0];
-                JSONObject json =  dataAccess.getAllServices(AuthorizeActivity.this);
-                JSONObject jsonMedics = dataAccess.getAllMedic(AuthorizeActivity.this);
+                JSONObject json =  dataAccess.getPayAuthorize(AuthorizeActivity.this);
                 error= "";
             }
             catch(Exception e)  {
@@ -130,7 +132,7 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
 
                     }
                     else {
-                        Toast msj = Toast.makeText(AuthorizeActivity.this, getString(R.string.NotFound), Toast.LENGTH_LONG);
+                        Toast msj = Toast.makeText(AuthorizeActivity.this, getString(R.string.NotProcess), Toast.LENGTH_LONG);
                         msj.setGravity(Gravity.CENTER,0,0);
                         msj.show();
                     }

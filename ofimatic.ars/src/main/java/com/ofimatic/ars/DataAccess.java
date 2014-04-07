@@ -14,7 +14,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DataAccess {
@@ -46,6 +48,13 @@ public class DataAccess {
     protected final String TAG_NOMBRESERVICIO= "NombreServicio";
     protected final String TAG_DESCUENTOSERVICIO = "DescuentoServicio";
 
+    protected final String TAG_AUTORIZACION = "autorizacion";
+    protected final String TAG_NOAPROBACION = "NoAprobacion";
+    protected final String TAG_MONTOSERVICIO = "MontoServicio";
+    protected final String TAG_DESCUENTO = "Descuento";
+    protected final String TAG_MONTOPAGAR= "MontoPagar";
+    protected final String TAG_Fecha= "Fecha";
+
     protected static String noPoliza;
     protected static long tagID;
     protected static String Afiliado;
@@ -60,9 +69,23 @@ public class DataAccess {
     protected static String Telefono;
     protected static String fechaEmision;
     protected static Bitmap foto;
-    protected static String url = "http://ofimatic-mobile.com/PHPConnections/ARS/SelectAfiliado.php";
+
+    protected static String idServicio;
+    protected static String nombreServicio;
+    protected static String idMedico;
+    protected static String nombreMedico;
+   // protected static String monto;
+
+    protected static Integer noAprobacion;
+    protected static String montoServicio;
+    protected static String descuentoServicio;
+    protected static String montoPagar;
+    protected static String Fecha;
+
+    protected static String urlSelectAfiliado = "http://ofimatic-mobile.com/PHPConnections/ARS/SelectAfiliado.php";
     protected static String urlAllMedic = "http://ofimatic-mobile.com/PHPConnections/ARS/SelectAllMedico.php";
     protected static String urlAllServices = "http://ofimatic-mobile.com/PHPConnections/ARS/SelectAllServices.php";
+    protected  static String urlspAuthorize = "http://ofimatic-mobile.com/PHPConnections/ARS/CallspAutorization.php";
 
     protected static Context context;
 
@@ -73,7 +96,7 @@ public class DataAccess {
     public static String[] medicNames;
     public  static JSONArray servicesArray;
     public static JSONArray medicoArray;
-
+    public static String descuento;
 
     /**
      * Obtiene la informacion del documento consultado.
@@ -88,7 +111,7 @@ public class DataAccess {
         // Chequea el log para el json response
          Log.d("Data Details", js.toString());
 
-        JSONObject jsonObject = js.makeHttpResquest(this.url, "GET", params, context);
+        JSONObject jsonObject = js.makeHttpResquest(this.urlSelectAfiliado, "GET", params, context);
 
         int success=0;
 
@@ -145,6 +168,63 @@ public class DataAccess {
     /**
      * Obtiene la informacion del documento consultado.
      */
+    public JSONObject getPayAuthorize(Context context)
+    {
+        this.context = context;
+        // Pasando Parametros
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("NoAfiliado", noAfiliado));
+        params.add(new BasicNameValuePair("IDServicio" , idServicio));
+        params.add(new BasicNameValuePair("IDMedico", idMedico));
+        params.add(new BasicNameValuePair("MontoServicio", montoServicio));
+
+        // Chequea el log para el json response
+        Log.d("Data Details", js.toString());
+
+        JSONObject jsonObject = js.makeHttpResquest(this.urlspAuthorize, "GET", params, context);
+
+        int success=0;
+
+        // json success tag
+        try {
+            success = jsonObject.getInt(TAG_SUCCESS);
+
+            if (success == 1) {
+
+                encontrado=true;
+                // Obtencion del producto.
+                JSONArray payObj = jsonObject
+                        .getJSONArray(TAG_AUTORIZACION); // JSON Array
+
+                // Obtencion del primer producto en el array
+                JSONObject jsonPayAuto = payObj.getJSONObject(0);
+
+                noAprobacion = jsonPayAuto.getInt(TAG_NOAPROBACION);
+                Afiliado =jsonPayAuto.getString(TAG_NOMBREAFILIADO);
+                nombreServicio =jsonPayAuto.getString(TAG_NOMBRESERVICIO);
+                nombreMedico =jsonPayAuto.getString(TAG_NOMBREMEDICO);
+
+                montoServicio = jsonPayAuto.getString(TAG_MONTOSERVICIO);
+                descuentoServicio =  jsonPayAuto.getString(TAG_DESCUENTO);
+                montoPagar = jsonPayAuto.getString(TAG_MONTOPAGAR);
+                Fecha = jsonPayAuto.getString(TAG_Fecha);
+
+            }
+            else{
+                //registro no encontrado
+                encontrado=false;
+            }
+
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        return jsonObject;
+    }
+
+    /**
+     * Obtiene la informacion del documento consultado.
+     */
     public JSONObject getAllMedic(Context context)
     {
         this.context = context;
@@ -193,7 +273,7 @@ public class DataAccess {
         return jsonObject;
     }
 
-    public static String descuento;
+
     public String findServicesID(int index)
     {
         String id;
@@ -315,7 +395,7 @@ public class DataAccess {
         params.add(new BasicNameValuePair("FechaEmision",this.fechaEmision));
         params.add(new BasicNameValuePair("FechaSistema",this.fechaEmision));
         // params.add(new BasicNameValuePair("Foto",this.foto));
-        return js.makeHttpResquest(this.url, "POST", params, context);
+        return js.makeHttpResquest(this.urlSelectAfiliado, "POST", params, context);
     }
 
 

@@ -6,20 +6,51 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 
 public class ResultActivity extends ActionBarActivity {
 
-    TextView result;
+
+    TextView noAprobacion;
+    TextView nomAfiliado;
+    TextView nomServ;
+    TextView nomMedico;
+    TextView montoServ;
+    TextView descuento;
+    TextView montoPagar;
+    TextView fecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        result = (TextView) findViewById(R.id.tvResult1);
-        result.setText("ID del Afiliado: " + AuthorizeActivity.afiliado +" "+ "Total: "+AuthorizeActivity.total +" "+ "Descuento: "+ AuthorizeActivity.desc );
+
+        noAprobacion = (TextView) findViewById(R.id.tvNoAprobacionRes);
+        nomAfiliado = (TextView) findViewById(R.id.tvNombreRes);
+        nomServ = (TextView) findViewById(R.id.tvServicioRes);
+        nomMedico = (TextView) findViewById(R.id.tvMedicoRes);
+        montoServ = (TextView) findViewById(R.id.tvMontoServRes);
+        descuento = (TextView) findViewById(R.id.tvDescuentoRes);
+        montoPagar = (TextView) findViewById(R.id.tvMontoPagarRes);
+        fecha = (TextView) findViewById(R.id.tvFechaRes);
+
+        noAprobacion.setText(DataAccess.noAprobacion.toString());
+        nomAfiliado.setText(DataAccess.Afiliado);
+        nomServ.setText(DataAccess.nombreServicio);
+        nomMedico.setText(DataAccess.nombreMedico);
+        montoServ.setText(DataAccess.montoServicio);
+        descuento.setText(DataAccess.descuentoServicio);
+        montoPagar.setText(DataAccess.montoPagar);
+        fecha.setText(DataAccess.Fecha);
+
+//        result = (TextView) findViewById(R.id.tvResult1);
+//        result.setText("ID del Afiliado: " + AuthorizeActivity.afiliado +" "+ "Total: "+AuthorizeActivity.total +" "+ "Descuento: "+ AuthorizeActivity.desc );
 
     }
+
+
 
 
 //    @Override

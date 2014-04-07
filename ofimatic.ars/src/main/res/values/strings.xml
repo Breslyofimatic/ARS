@@ -28,10 +28,12 @@
     <string name="Activo">Activo</string>
     <string name="Inactivo">Inactivo</string>
     <string name="Corrupta">Error! Fecha de vencimiento corrupta</string>
-    <string name="Buscando">Buscando....</string>
+    <string name="Buscando">Buscando...</string>
+    <string name="Procesando">Procesando...</string>
     <string name="NoConection">Error de conexión, por favor verificar</string>
     <string name="Invalida">Tarjeta invalida</string>
     <string name="NotFound">Registro no encontrado</string>
+    <string name="NotProcess">No se proceso su solicitud!</string>
     <string name="ErrorSystem">Error del sistema</string>
     <string name="DataError">Datos erroneos</string>
     <string name="DataInc">Datos incorrectos</string>
