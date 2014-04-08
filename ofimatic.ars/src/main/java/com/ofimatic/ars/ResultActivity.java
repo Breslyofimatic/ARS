@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -11,43 +12,20 @@ import org.w3c.dom.Text;
 
 public class ResultActivity extends ActionBarActivity {
 
-
-    TextView noAprobacion;
-    TextView nomAfiliado;
-    TextView nomServ;
-    TextView nomMedico;
-    TextView montoServ;
-    TextView descuento;
-    TextView montoPagar;
-    TextView fecha;
+    WebView webview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        ReciboTemplate reciboTemplate = new ReciboTemplate();
 
-        noAprobacion = (TextView) findViewById(R.id.tvNoAprobacionRes);
-        nomAfiliado = (TextView) findViewById(R.id.tvNombreRes);
-        nomServ = (TextView) findViewById(R.id.tvServicioRes);
-        nomMedico = (TextView) findViewById(R.id.tvMedicoRes);
-        montoServ = (TextView) findViewById(R.id.tvMontoServRes);
-        descuento = (TextView) findViewById(R.id.tvDescuentoRes);
-        montoPagar = (TextView) findViewById(R.id.tvMontoPagarRes);
-        fecha = (TextView) findViewById(R.id.tvFechaRes);
+        String recibo = reciboTemplate.recibo(DataAccess.Fecha,DataAccess.noAprobacion.toString(), DataAccess.noAfiliado,DataAccess.Afiliado, DataAccess.nombreServicio, DataAccess.nombreMedico, DataAccess.montoServicio,DataAccess.descuentoServicio,DataAccess.montoPagar);
 
-        noAprobacion.setText(DataAccess.noAprobacion.toString());
-        nomAfiliado.setText(DataAccess.Afiliado);
-        nomServ.setText(DataAccess.nombreServicio);
-        nomMedico.setText(DataAccess.nombreMedico);
-        montoServ.setText(DataAccess.montoServicio);
-        descuento.setText(DataAccess.descuentoServicio);
-        montoPagar.setText(DataAccess.montoPagar);
-        fecha.setText(DataAccess.Fecha);
+        webview = (WebView) findViewById(R.id.webView);
 
-//        result = (TextView) findViewById(R.id.tvResult1);
-//        result.setText("ID del Afiliado: " + AuthorizeActivity.afiliado +" "+ "Total: "+AuthorizeActivity.total +" "+ "Descuento: "+ AuthorizeActivity.desc );
-
+        webview.loadDataWithBaseURL("",recibo.toUpperCase(),"text/html","UTF-8","");
     }
 
 

@@ -97,6 +97,7 @@ public class DataAccess {
     public  static JSONArray servicesArray;
     public static JSONArray medicoArray;
     public static String descuento;
+    public static Float montoServices;
 
     /**
      * Obtiene la informacion del documento consultado.
