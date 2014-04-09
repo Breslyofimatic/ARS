@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,11 +39,7 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
     String servicesID;
 
     public static String afiliado;
-    public static String serv;
-    public static String medic;
-    public static double mont;
-    public static double desc;
-    public static double total;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,24 +62,12 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
 
     public void bottonProcesar(View view)
     {
-        // afiliado = DataAccess.noAfiliado;
          DataAccess.idServicio = servicesID;
          dataAccess.idMedico = idMedico;
          dataAccess.montoServicio = monto.getText().toString();
 
         new GetProcedure().execute((Void[]) null);
-
-//         desc = Double.parseDouble(DataAccess.descuento);
-//
-//            desc = mont * desc / 100;
-//
-//            total = mont - desc;
-
-//        Intent intent = new Intent(AuthorizeActivity.this, ResultActivity.class);
-//        startActivity(intent);
-        //new GetProcedure().execute((Void[]) null);
     }
-
 
     /**
      * Procesa el pago del servicio.
@@ -147,7 +132,6 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
         }
     }
 
-
     public void onItemSelected(AdapterView<?> parentView, View view, int position, long id) {
 
         final int spinIdServ = R.id.SpinServicios;
@@ -206,7 +190,6 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
         }
 
     }
-
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
@@ -273,6 +256,16 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
         }
     }
 
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_ENTER:
+                bottonProcesar(new View(AuthorizeActivity.this));
+                return true;
+            default:
+                return super.onKeyUp(keyCode, event);
+        }
+    }
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
