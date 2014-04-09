@@ -29,7 +29,7 @@ public class ReciboTemplate {
                 "    <td></td>\n" +
                 "  </tr>\n" +
                 "  <tr>\n" +
-                "    <th colspan=\"3\">ARS</th>\n" +
+                "    <th colspan=\"3\"><font size=\"22\">ARS</font></th>\n" +
                 "  </tr>\n" +
                 "   <tr>\n" +
                 "    <td colspan=\"3\" class=\"celda\"></td>\n" +
@@ -143,13 +143,13 @@ public class ReciboTemplate {
                 "    <td>\n" +
                 "    \t<b> Monto Servicio: </b>\n" +
                 "    </td>  \n" +
-                "    <td> "+montoServicio+" </td>\n" +
+                "    <td align=\"right\"> "+montoServicio+" </td>\n" +
                 "  </tr>\n" +
                 "   <tr>\n" +
                 "    <td>\n" +
                 "    \t<b> Descuento: </b>\n" +
                 "    </td>  \n" +
-                "    <td> "+descuento+" </td>\n" +
+                "    <td align=\"right\"> "+descuento+" </td>\n" +
                 "  </tr>\n" +
                 "  \n" +
                 "  <tr>\n" +
@@ -161,7 +161,7 @@ public class ReciboTemplate {
                 "    <td>\n" +
                 "    \t<b> Monto a Pagar: </b>\n" +
                 "    </td>  \n" +
-                "    <td> "+montoPagar+" </td>\n" +
+                "    <td align=\"right\"> "+montoPagar+" </td>\n" +
                 "  </tr>\n" +
                 "  <tr>\n" +
                 "    <td height=\"50\">\n" +
