@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:background="#FFFFFF"
     tools:context="com.ofimatic.ars.ResultActivity">
 
 
@@ -17,6 +17,10 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
 
             >
 
@@ -29,15 +33,17 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/printbtn"
-                android:text="Imprimir"
-                android:background="@drawable/mybuttons"
-                android:onClick="TestPrint"
-                android:layout_alignParentBottom="true" />
+
 
         </RelativeLayout>
     </ScrollView>
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/print"
+        android:fitsSystemWindows="true"
+        android:onClick="TestPrint"
+        android:layout_alignParentLeft="true"/>
 </RelativeLayout>

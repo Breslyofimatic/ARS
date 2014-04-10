@@ -3,6 +3,7 @@ package com.ofimatic.ars;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -40,10 +41,8 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
 
     public static String afiliado;
 
+    private void initUI(){
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authorize);
 
         spinServices = (Spinner) findViewById(R.id.SpinServicios);
@@ -56,7 +55,21 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
         spinMedics.setOnItemSelectedListener(this);
         spinServices.setOnItemSelectedListener(this);
 
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initUI();
+
        // ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,R.layout.row, DataAccess.medicNames);
+
+    }
+
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        initUI();
 
     }
 

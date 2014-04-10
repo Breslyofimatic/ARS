@@ -2,6 +2,7 @@ package com.ofimatic.ars;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.Uri;
@@ -31,16 +32,28 @@ public class ResultActivity extends ActionBarActivity {
 
     String recibo = reciboTemplate.recibo(DataAccess.Fecha,DataAccess.noAprobacion.toString(), DataAccess.noAfiliado,DataAccess.Afiliado, DataAccess.nombreServicio, DataAccess.nombreMedico, DataAccess.montoServicio,DataAccess.descuentoServicio,DataAccess.montoPagar);
 
+    private void initUI(){
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
 
         webview = (WebView) findViewById(R.id.webView);
 
         webview.loadDataWithBaseURL("",recibo.toUpperCase(),"text/html","UTF-8","");
+
+}
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initUI();
+
+
+    }
+
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        initUI();
 
     }
 
