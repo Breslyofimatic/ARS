@@ -1,5 +1,6 @@
 package com.ofimatic.ars;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.nfc.NdefMessage;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.ofimatic.library.DialogHandler;
 import com.ofimatic.library.NFC;
 
 import java.io.UnsupportedEncodingException;
@@ -24,10 +26,11 @@ import java.util.Arrays;
 public class MainActivity extends ActionBarActivity {
 
    NFC nfcClass = new NFC ();
+   DialogHandler dialogo = new DialogHandler();
    protected final String TAG = "NfcDemo";
    private NfcAdapter mNfcAdapter;
 
-    private void initUI(){
+    private void initUI() {
 
         setContentView(R.layout.activity_main);
 
@@ -35,15 +38,18 @@ public class MainActivity extends ActionBarActivity {
         NFC.MIME_TEXT_PLAIN = "application/com.ofimatic.ars";
         NFC.MIMETYPE = "application/com.ofimatic.ars".getBytes();
 
-        nfcClass.VerificationNFC(mNfcAdapter, this, okProcess(), cancelProcess());
+        Boolean activadoNfc = nfcClass.VerificationNFC(mNfcAdapter);
 
-        Boolean read = nfcClass.handleIntent(getIntent());
+       if (activadoNfc == false){
+            dialogo.Confirm(MainActivity.this, "NFC Desactivado", "¿Desea activar NFC?", "No", "Si",
+                    R.drawable.ic_launcher, okProcess(), cancelProcess());
+             }
 
-        if (read)
-        {
-            new NdefReaderTask().execute(NFC.tag);
+            Boolean read = nfcClass.handleIntent(getIntent());
+            if (read) {
+             new NdefReaderTask().execute(NFC.tag);
+           }
         }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
