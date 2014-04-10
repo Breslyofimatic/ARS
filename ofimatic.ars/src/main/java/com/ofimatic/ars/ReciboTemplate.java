@@ -12,14 +12,22 @@ public class ReciboTemplate {
                 "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n" +
                 "<head>\n" +
                 "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n" +
-                "<title>Documento sin título</title>\n" +
+                "<title>Recibo ARS</title>\n" +
                 "</head>\n" +
-                "<style>\n" +
+           "<style>\n" +
                 "\t.celda{\n" +
                 "\t\t  background-color:#000000;\n" +
                 "\t\t}\n" +
                 "\n" +
-                "</style>\n" +
+                "\n" +
+                "body\n" +
+                "{\n"+
+                "\n" +
+                "\twidth:300px;\n" +
+                "\theight:auto;\n" +
+                "  margin: 0 auto;\n" +
+                "\t}\n"+
+            "</style>\n" +
                 "\n" +
                 "<body>\n" +
                 "<table>\n" +

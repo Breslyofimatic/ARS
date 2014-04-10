@@ -26,19 +26,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/webView"
                 android:scrollbars="none"
-                android:layout_centerHorizontal="true"
-                />
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/printbtn"
                 android:text="Imprimir"
-                android:layout_below="@+id/webView"
                 android:background="@drawable/mybuttons"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:onClick="TestPrint"/>
+                android:onClick="TestPrint"
+                android:layout_alignParentBottom="true" />
 
         </RelativeLayout>
     </ScrollView>

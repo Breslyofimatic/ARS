@@ -5,8 +5,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Ajustes</string>
     <string name="title_activity_reader">Información del paciente</string>
-    <string name="title_activity_reader_online">ReaderOnlineActivity</string>
-    <string name="title_activity_result">ResultActivity</string>
+    <string name="title_activity_reader_online">Detalles del Afiliado</string>
+    <string name="title_activity_result">Recibo ARS</string>
     <string name="title_section1">Datos del ciudadano</string>
     <string name="title_section2">Más detalles</string>
     <string name="title_activity_manual">Consulta manual</string>
@@ -37,7 +37,7 @@
     <string name="ErrorSystem">Error del sistema</string>
     <string name="DataError">Datos erroneos</string>
     <string name="DataInc">Datos incorrectos</string>
-    <string name="title_activity_authorize">AuthorizeActivity</string>
+    <string name="title_activity_authorize">Procesar Servicio</string>
 
     <string name="ServiciosPromtp">Servicios</string>
     <string name="MedicosPromtp">Medicos</string>
