@@ -1,6 +1,7 @@
 package com.ofimatic.ars;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.nfc.NdefMessage;
@@ -10,6 +11,7 @@ import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -21,7 +23,9 @@ import com.ofimatic.library.DialogHandler;
 import com.ofimatic.library.NFC;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.TimerTask;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -38,9 +42,7 @@ public class MainActivity extends ActionBarActivity {
         NFC.MIME_TEXT_PLAIN = "application/com.ofimatic.ars";
         NFC.MIMETYPE = "application/com.ofimatic.ars".getBytes();
 
-        Boolean activadoNfc = nfcClass.VerificationNFC(mNfcAdapter);
-
-       if (activadoNfc == false){
+       if (nfcClass.VerificationNFC(mNfcAdapter) == false){
             dialogo.Confirm(MainActivity.this, "NFC Desactivado", "¿Desea activar NFC?", "No", "Si",
                     R.drawable.ic_launcher, okProcess(), cancelProcess());
              }
@@ -171,7 +173,7 @@ public class MainActivity extends ActionBarActivity {
                 try{
                     String [] Arreglo = result.split(";");
 
-                    DataAccess.tagID = Long.parseLong(Arreglo[0]);
+                    DataAccess.tagID = new BigInteger(Arreglo[0]);
                     DataAccess.noPoliza =  Arreglo[1];
                     DataAccess.noAfiliado = Arreglo[2];
                     DataAccess.Afiliado = Arreglo[3];

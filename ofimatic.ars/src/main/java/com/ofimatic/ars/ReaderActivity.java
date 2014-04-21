@@ -67,7 +67,7 @@ public class ReaderActivity extends ActionBarActivity {
 
         try{
 
-            if (NFC.CardID == DataAccess.tagID)
+            if (NFC.CardID.equals(DataAccess.tagID))
             {
                 iconFechaCorrectatab1.setVisibility(View.VISIBLE);
                 iconFechaCorrectatab1.setImageResource(R.drawable.ic_good_or_tick);

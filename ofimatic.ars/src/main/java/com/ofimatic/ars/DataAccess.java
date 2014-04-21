@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,7 +57,7 @@ public class DataAccess {
     protected final String TAG_Fecha= "Fecha";
 
     protected static String noPoliza;
-    protected static long tagID;
+    protected static BigInteger tagID;
     protected static String Afiliado;
     protected static String noAfiliado;
     protected static String clienteCompany;
@@ -131,7 +132,7 @@ public class DataAccess {
             JSONObject jsonafiliado = afiliadoObj.getJSONObject(0);
 
             noAfiliado =jsonafiliado.getString(TAG_NOAFILIADO);
-            tagID = jsonafiliado.getLong(TAG_ID);
+            tagID = new BigInteger( jsonafiliado.getString(TAG_ID));
             noPoliza =jsonafiliado.getString(TAG_NOPOLIZA);
 
             Afiliado =jsonafiliado.getString(TAG_NOMBREAFILIADO);

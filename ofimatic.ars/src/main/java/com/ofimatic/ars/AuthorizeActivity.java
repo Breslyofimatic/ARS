@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
@@ -22,7 +24,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ofimatic.library.DialogHandler;
+import com.ofimatic.library.TimeOutApp;
+
 import org.json.JSONObject;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class AuthorizeActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener {
@@ -40,10 +48,17 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
     String servicesID;
 
     public static String afiliado;
+    DialogHandler dialogo = new DialogHandler();
+    TimerTask updateProfile;
 
     private void initUI(){
 
         setContentView(R.layout.activity_authorize);
+
+            //Timer para la Aplicación
+        Timer timer = new Timer();
+        updateProfile = new TimeOutApp(AuthorizeActivity.this, MainActivity.class);
+        timer.schedule(updateProfile, 10000);
 
         spinServices = (Spinner) findViewById(R.id.SpinServicios);
         spinMedics = (Spinner) findViewById(R.id.SpinMedicos);
@@ -79,8 +94,34 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
          dataAccess.idMedico = idMedico;
          dataAccess.montoServicio = monto.getText().toString();
 
-        new GetProcedure().execute((Void[]) null);
+
+        dialogo.Confirm(AuthorizeActivity.this, "Autorizacion", "¿Esta seguro que desea autorizar este servicio?", "No", "Si",
+                R.drawable.ic_launcher, okProcess(), cancelProcess());
+
     }
+
+    public Runnable okProcess(){
+        return new Runnable() {
+            public void run() {
+                DataAccess.idServicio = servicesID;
+                dataAccess.idMedico = idMedico;
+                dataAccess.montoServicio = monto.getText().toString();
+
+                new GetProcedure().execute((Void[]) null);
+            }
+        };
+    }
+
+    /**
+     * Proceso para Cancelación del mensaje.
+     */
+    public Runnable cancelProcess(){
+        return new Runnable() {
+            public void run() {
+            }
+        };
+    }
+
 
     /**
      * Procesa el pago del servicio.
@@ -125,6 +166,7 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
                 {
                     if (DataAccess.encontrado){
 
+                        updateProfile.cancel();
                         Intent intent = new Intent(AuthorizeActivity.this, ResultActivity.class);
                         startActivity(intent);
 
@@ -299,5 +341,48 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
 //        }
 //        return super.onOptionsItemSelected(item);
 //    }
+
+    public class CustomTimerTask extends TimerTask {
+
+        private Context context;
+
+        // Write Custom Constructor to pass Context
+        public CustomTimerTask(Context con) {
+            this.context = con;
+        }
+
+        Handler  mHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+
+                String mString=(String)msg.obj;
+                Toast toast =  Toast.makeText(context, mString, Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER,0,0);
+                toast.show();
+            }
+        };
+
+        @Override
+        public void run() {
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    Message msg = new Message();
+                    msg.obj = "La Sección Expiró";
+                    mHandler.sendMessage(msg);
+                    Intent intent = new Intent(context, MainActivity.class);
+                    startActivity(intent);
+                }
+            }).start();
+
+            super.cancel();
+
+        }
+
+
+
+    }
 
 }
