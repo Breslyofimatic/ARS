@@ -1,7 +1,6 @@
 package com.ofimatic.ars;
 
-import android.app.Activity;
-import android.content.Context;
+
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.nfc.NdefMessage;
@@ -11,21 +10,15 @@ import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
-
 import com.ofimatic.library.DialogHandler;
 import com.ofimatic.library.NFC;
-
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.TimerTask;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -123,6 +116,9 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+   // ReaderActivity readerActivity = new ReaderActivity();
+   // ReaderOnlineActivity readerOnlineActivity = new ReaderOnlineActivity();
+   // AuthorizeActivity authorizeActivity = new AuthorizeActivity();
     /**
      * Proceso para obtener los datos de la tarjeta.
      */
@@ -180,6 +176,20 @@ public class MainActivity extends ActionBarActivity {
                     DataAccess.clienteCompany = Arreglo[4];
                     DataAccess.Plan = Arreglo[5];
                     DataAccess.FechaNac = Arreglo[6];
+
+                    if ( ReaderActivity.timerTask!=null)
+                    {
+                        ReaderActivity.timerTask.cancel();
+                    }
+                    if ( ReaderOnlineActivity.timerTask!=null)
+                    {
+                        ReaderOnlineActivity.timerTask.cancel();
+                    }
+                    if ( AuthorizeActivity.timerTask!=null)
+                    {
+                        AuthorizeActivity.timerTask.cancel();
+                    }
+
 
                     Intent in = new Intent(MainActivity.this, ReaderActivity.class);
                     in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

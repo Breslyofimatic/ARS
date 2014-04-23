@@ -13,8 +13,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -49,7 +47,7 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
 
     public static String afiliado;
     DialogHandler dialogo = new DialogHandler();
-    TimerTask updateProfile;
+    public static TimerTask timerTask;
 
     private void initUI(){
 
@@ -57,8 +55,8 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
 
             //Timer para la Aplicación
         Timer timer = new Timer();
-        updateProfile = new TimeOutApp(AuthorizeActivity.this, MainActivity.class);
-        timer.schedule(updateProfile, 10000);
+        timerTask = new TimeOutApp(AuthorizeActivity.this, MainActivity.class);
+        timer.schedule(timerTask, 60000);
 
         spinServices = (Spinner) findViewById(R.id.SpinServicios);
         spinMedics = (Spinner) findViewById(R.id.SpinMedicos);
@@ -81,6 +79,19 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
        // ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,R.layout.row, DataAccess.medicNames);
 
     }
+
+    @Override
+    protected void onPause() {
+        /**
+         * Call this before onPause, otherwise an IllegalArgumentException is thrown as well.
+         */
+        if ( AuthorizeActivity.timerTask!=null)
+        {
+            AuthorizeActivity.timerTask.cancel();
+        }
+        super.onPause();
+    }
+
 
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -166,7 +177,7 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
                 {
                     if (DataAccess.encontrado){
 
-                        updateProfile.cancel();
+                        timerTask.cancel();
                         Intent intent = new Intent(AuthorizeActivity.this, ResultActivity.class);
                         startActivity(intent);
 

@@ -1,27 +1,19 @@
 package com.ofimatic.ars;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 
 
 public class ResultActivity extends ActionBarActivity {
@@ -29,25 +21,30 @@ public class ResultActivity extends ActionBarActivity {
     WebView webview;
 
     ReciboTemplate reciboTemplate = new ReciboTemplate();
+    String recibo;
 
-    String recibo = reciboTemplate.recibo(DataAccess.Fecha,DataAccess.noAprobacion.toString(), DataAccess.noAfiliado,DataAccess.Afiliado, DataAccess.nombreServicio, DataAccess.nombreMedico, DataAccess.montoServicio,DataAccess.descuentoServicio,DataAccess.montoPagar);
+    private void initUI()
+    { setContentView(R.layout.activity_result);
 
-    private void initUI(){
+        String montoServ = priceToString(Double.parseDouble(DataAccess.montoServicio));
+        String Desc = priceToString(Double.parseDouble(DataAccess.descuentoServicio));
+        String montoTotal =  priceToString(Double.parseDouble(DataAccess.montoPagar));
 
-        setContentView(R.layout.activity_result);
-
+         recibo = reciboTemplate.recibo(DataAccess.Fecha,DataAccess.noAprobacion.toString(), DataAccess.noAfiliado,DataAccess.Afiliado, DataAccess.nombreServicio, DataAccess.nombreMedico, montoServ, Desc, montoTotal);
 
         webview = (WebView) findViewById(R.id.webView);
-
         webview.loadDataWithBaseURL("",recibo.toUpperCase(),"text/html","UTF-8","");
-
 }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initUI();
+    }
 
+
+    public static String priceToString(Double price) {
+        return new DecimalFormat("###,###.00").format(price);
 
     }
 

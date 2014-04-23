@@ -16,7 +16,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ofimatic.library.TimeOutApp;
+
 import org.json.JSONObject;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class ReaderOnlineActivity extends ActionBarActivity {
@@ -41,9 +46,15 @@ public class ReaderOnlineActivity extends ActionBarActivity {
     ImageView foto;
     ImageView iconFechaCorrectaFPM;
 
+    public static TimerTask timerTask;
 
     private void initUI(){
         setContentView(R.layout.activity_reader_online);
+
+        //Timer para la Aplicación
+        Timer timer = new Timer();
+        timerTask = new TimeOutApp(ReaderOnlineActivity.this, MainActivity.class);
+        timer.schedule(timerTask, 60000);
 
         noafiliado = (TextView) findViewById(R.id.tvNoAfiliadoRO);
         nopoliza = (TextView) findViewById(R.id.tvNoPolizaRO);
@@ -110,6 +121,18 @@ public class ReaderOnlineActivity extends ActionBarActivity {
     }
 
     @Override
+    protected void onPause() {
+        /**
+         * Call this before onPause, otherwise an IllegalArgumentException is thrown as well.
+         */
+        if ( ReaderOnlineActivity.timerTask!=null)
+        {
+            ReaderOnlineActivity.timerTask.cancel();
+        }
+        super.onPause();
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         initUI();
@@ -168,6 +191,7 @@ public class ReaderOnlineActivity extends ActionBarActivity {
                 {
                     if (DataAccess.encontrado){
 
+                            timerTask.cancel();
                             Intent intent = new Intent(ReaderOnlineActivity.this, AuthorizeActivity.class);
                             startActivity(intent);
 

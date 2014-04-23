@@ -13,11 +13,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.math.BigInteger;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class DataAccess {
@@ -98,7 +95,7 @@ public class DataAccess {
     public  static JSONArray servicesArray;
     public static JSONArray medicoArray;
     public static String descuento;
-    public static Float montoServices;
+
 
     /**
      * Obtiene la informacion del documento consultado.
@@ -113,9 +110,9 @@ public class DataAccess {
         // Chequea el log para el json response
          Log.d("Data Details", js.toString());
 
-        JSONObject jsonObject = js.makeHttpResquest(this.urlSelectAfiliado, "GET", params, context);
+        JSONObject jsonObject = js.makeHttpResquest(urlSelectAfiliado, "GET", params, context);
 
-        int success=0;
+        int success;
 
         // json success tag
         try {
@@ -132,7 +129,7 @@ public class DataAccess {
             JSONObject jsonafiliado = afiliadoObj.getJSONObject(0);
 
             noAfiliado =jsonafiliado.getString(TAG_NOAFILIADO);
-            tagID = new BigInteger( jsonafiliado.getString(TAG_ID));
+            tagID = new BigInteger(jsonafiliado.getString(TAG_ID));
             noPoliza =jsonafiliado.getString(TAG_NOPOLIZA);
 
             Afiliado =jsonafiliado.getString(TAG_NOMBREAFILIADO);
@@ -183,7 +180,7 @@ public class DataAccess {
         // Chequea el log para el json response
         Log.d("Data Details", js.toString());
 
-        JSONObject jsonObject = js.makeHttpResquest(this.urlspAuthorize, "GET", params, context);
+        JSONObject jsonObject = js.makeHttpResquest(urlspAuthorize, "GET", params, context);
 
         int success=0;
 
@@ -237,9 +234,9 @@ public class DataAccess {
         // Chequea el log para el json response
         Log.d("Data Details", js.toString());
 
-        JSONObject jsonObject = js.makeHttpResquest(this.urlAllMedic, "GET", params, context);
+        JSONObject jsonObject = js.makeHttpResquest(urlAllMedic, "GET", params, context);
 
-        int success=0;
+        int success;
 
         // json success tag
         try {
@@ -313,7 +310,7 @@ public class DataAccess {
         return  names.toArray(new String[names.size()]);
     }
 
-    public String findMedicID(int index)
+   /* public String findMedicID(int index)
     {
         String id;
         try{
@@ -325,7 +322,8 @@ public class DataAccess {
         }
 
         return  id;
-    }
+    }*/
+
     /**
      * Obtiene la informacion del documento consultado.
      */
@@ -339,7 +337,7 @@ public class DataAccess {
         // Chequea el log para el json response
         Log.d("Data Details", js.toString());
 
-        JSONObject jsonObject = js.makeHttpResquest(this.urlAllServices, "GET", params, context);
+        JSONObject jsonObject = js.makeHttpResquest(urlAllServices, "GET", params, context);
 
         int success=0;
 
@@ -386,18 +384,18 @@ public class DataAccess {
     {
         this.context = context;
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("NoDocumento",this.noPoliza));
+        params.add(new BasicNameValuePair("NoDocumento",noPoliza));
         //params.add(new BasicNameValuePair("tagID", this.tagID);
-        params.add(new BasicNameValuePair("NombreAfiliado",this.Afiliado));
-        params.add(new BasicNameValuePair("NoAfiliado",this.noAfiliado));
-        params.add(new BasicNameValuePair("Cliente",this.clienteCompany));
-        params.add(new BasicNameValuePair("Plan",this.Plan));
-        params.add(new BasicNameValuePair("FechaNacimiento",this.FechaNac));
-        params.add(new BasicNameValuePair("TipoSangre",this.tipoSangre));
-        params.add(new BasicNameValuePair("FechaEmision",this.fechaEmision));
-        params.add(new BasicNameValuePair("FechaSistema",this.fechaEmision));
+        params.add(new BasicNameValuePair("NombreAfiliado",Afiliado));
+        params.add(new BasicNameValuePair("NoAfiliado",noAfiliado));
+        params.add(new BasicNameValuePair("Cliente",clienteCompany));
+        params.add(new BasicNameValuePair("Plan",Plan));
+        params.add(new BasicNameValuePair("FechaNacimiento",FechaNac));
+        params.add(new BasicNameValuePair("TipoSangre",tipoSangre));
+        params.add(new BasicNameValuePair("FechaEmision",fechaEmision));
+        params.add(new BasicNameValuePair("FechaSistema",fechaEmision));
         // params.add(new BasicNameValuePair("Foto",this.foto));
-        return js.makeHttpResquest(this.urlSelectAfiliado, "POST", params, context);
+        return js.makeHttpResquest(urlSelectAfiliado, "POST", params, context);
     }
 
 

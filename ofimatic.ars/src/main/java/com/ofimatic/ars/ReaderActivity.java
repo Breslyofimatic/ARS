@@ -18,8 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ofimatic.library.NFC;
+import com.ofimatic.library.TimeOutApp;
 
 import org.json.JSONObject;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class ReaderActivity extends ActionBarActivity {
@@ -30,22 +34,25 @@ public class ReaderActivity extends ActionBarActivity {
     TextView noPolizatv;
     TextView noAfiliadotv;
     TextView afiliadotv;
-
-    /*****************************************/
-    //Faltan estos textview en el diseño.
     TextView clienteCompanytv;
     TextView plantv;
     TextView fechanactv;
-
     ImageView iconFechaCorrectatab1;
     TextView estatus;
     Button btndetalles;
+    public static TimerTask timerTask;
 
     private void initUI(){
 
         setContentView(R.layout.activity_reader);
 
         StrictMode.enableDefaults();
+
+
+        //Timer para la Aplicación
+        Timer timer = new Timer();
+        timerTask = new TimeOutApp(ReaderActivity.this, MainActivity.class);
+        timer.schedule(timerTask, 60000);
 
         noPolizatv = (TextView) findViewById(R.id.tvNoPoliza);
         noAfiliadotv = (TextView) findViewById(R.id.tvNoAfiliado);
@@ -98,13 +105,23 @@ public class ReaderActivity extends ActionBarActivity {
     }
 
     @Override
+    protected void onPause() {
+        /**
+         * Call this before onPause, otherwise an IllegalArgumentException is thrown as well.
+         */
+        if ( ReaderActivity.timerTask!=null)
+        {
+            ReaderActivity.timerTask.cancel();
+        }
+        super.onPause();
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         initUI();
 
     }
-
-
 
     public void findPerson(View V) {
         new GetAfiliado().execute((Void[]) null);
@@ -133,7 +150,7 @@ public class ReaderActivity extends ActionBarActivity {
             // Actualiza la UI desde un hilo
             try {
                 //DataAccess.noPoliza = NFC.Arreglo[0];
-                JSONObject json =  dataAccess.getProfile(ReaderActivity.this);
+                dataAccess.getProfile(ReaderActivity.this);
                 error= "";
             }
             catch(Exception e)  {
@@ -153,10 +170,11 @@ public class ReaderActivity extends ActionBarActivity {
                 {
                     if (DataAccess.encontrado){
                         //Validación del Tag ID:
-                       // if (NFC.CardID == dataAccess.tagID){
+                        if (NFC.CardID.equals(dataAccess.tagID)){
+                            timerTask.cancel();
                             Intent intent = new Intent(ReaderActivity.this, ReaderOnlineActivity.class);
                             startActivity(intent);
-                        /*}
+                        }
                         else {
                             iconFechaCorrectatab1.setVisibility(View.VISIBLE);
                             iconFechaCorrectatab1.setImageResource(R.drawable.ic_error);
@@ -164,7 +182,7 @@ public class ReaderActivity extends ActionBarActivity {
                             estatus.setText(getString(R.string.Invalida));
                             estatus.setTextColor(Color.parseColor("#B00B0A"));
                             btndetalles.setVisibility(View.GONE);
-                        }*/
+                        }
                     }
                     else {
                         Toast msj = Toast.makeText(ReaderActivity.this, getString(R.string.NotFound), Toast.LENGTH_LONG);
