@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="C:\Users\mmartinez\Documents\GitHub\ARS" />
-            <option value="C:\Users\mmartinez\Documents\GitHub\ARS\ofimatic.ars" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/ofimatic.ars" />
           </set>
         </option>
       </GradleProjectSettings>

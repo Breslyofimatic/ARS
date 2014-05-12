@@ -26,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
    DialogHandler dialogo = new DialogHandler();
    protected final String TAG = "NfcDemo";
    private NfcAdapter mNfcAdapter;
-
+   // public static Boolean Conectado = false;
     private void initUI() {
 
         setContentView(R.layout.activity_main);
@@ -34,6 +34,14 @@ public class MainActivity extends ActionBarActivity {
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         NFC.MIME_TEXT_PLAIN = "application/com.ofimatic.ars";
         NFC.MIMETYPE = "application/com.ofimatic.ars".getBytes();
+
+
+        MyServiceNotification.title = "Aviso: Reunion a las 10:00 AM.";
+        MyServiceNotification.message = "Msg: con motivo a nuevas pautas.";
+
+       // Intent intent = new Intent(this, MyServiceNotification.class);
+      //  startService(intent);
+
 
        if (nfcClass.VerificationNFC(mNfcAdapter) == false){
             dialogo.Confirm(MainActivity.this, "NFC Desactivado", "¿Desea activar NFC?", "No", "Si",
@@ -44,12 +52,15 @@ public class MainActivity extends ActionBarActivity {
             if (read) {
              new NdefReaderTask().execute(NFC.tag);
            }
+
         }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initUI();
+
+
     }
 
     @Override

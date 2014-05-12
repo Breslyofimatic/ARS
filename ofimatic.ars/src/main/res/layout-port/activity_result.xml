@@ -34,6 +34,52 @@
                 android:layout_centerHorizontal="true"
                 />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ARS"
+                android:id="@+id/textViewARS"
+                android:layout_marginTop="40dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FECHA:"
+                android:id="@+id/textViewFECHA"
+                android:layout_below="@+id/textViewARS"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="46dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FECHAVALUE"
+                android:id="@+id/textViewFECHAVALUE"
+                android:layout_below="@+id/textViewFECHA"
+                android:layout_alignLeft="@+id/textViewFECHA"
+                android:layout_alignStart="@+id/textViewFECHA" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="APROBACION NO.:"
+                android:id="@+id/textViewAPROBACION"
+                android:layout_below="@+id/textViewFECHAVALUE"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="APROBACIONVALUE"
+                android:id="@+id/textViewAPROBACIONVALUE"
+                android:layout_below="@+id/textViewAPROBACION"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
