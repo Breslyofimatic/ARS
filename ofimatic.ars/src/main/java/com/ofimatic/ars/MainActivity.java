@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.widget.EditText;
 import android.widget.Toast;
 import com.ofimatic.library.DialogHandler;
 import com.ofimatic.library.NFC;
@@ -42,8 +43,7 @@ public class MainActivity extends ActionBarActivity {
        // Intent intent = new Intent(this, MyServiceNotification.class);
       //  startService(intent);
 
-
-       if (nfcClass.VerificationNFC(mNfcAdapter) == false){
+        if (nfcClass.VerificationNFC(mNfcAdapter) == false){
             dialogo.Confirm(MainActivity.this, "NFC Desactivado", "¿Desea activar NFC?", "No", "Si",
                     R.drawable.ic_launcher, okProcess(), cancelProcess());
              }
@@ -59,6 +59,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initUI();
+
 
 
     }
