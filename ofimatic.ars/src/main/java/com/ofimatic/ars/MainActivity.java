@@ -1,6 +1,5 @@
 package com.ofimatic.ars;
 
-
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.nfc.NdefMessage;
@@ -13,7 +12,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Gravity;
-import android.widget.EditText;
 import android.widget.Toast;
 import com.ofimatic.library.DialogHandler;
 import com.ofimatic.library.NFC;
@@ -21,58 +19,49 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.util.Arrays;
 
+
 public class MainActivity extends ActionBarActivity {
 
    NFC nfcClass = new NFC ();
    DialogHandler dialogo = new DialogHandler();
    protected final String TAG = "NfcDemo";
    private NfcAdapter mNfcAdapter;
-   // public static Boolean Conectado = false;
+
     private void initUI() {
-
+        //creando layout
         setContentView(R.layout.activity_main);
-
+        //Instanciacion de NFC
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         NFC.MIME_TEXT_PLAIN = "application/com.ofimatic.ars";
         NFC.MIMETYPE = "application/com.ofimatic.ars".getBytes();
 
-
-        MyServiceNotification.title = "Aviso: Reunion a las 10:00 AM.";
-        MyServiceNotification.message = "Msg: con motivo a nuevas pautas.";
-
-       // Intent intent = new Intent(this, MyServiceNotification.class);
-      //  startService(intent);
-
+        //TODO: Se verifica si el NFC esta activado
         if (nfcClass.VerificationNFC(mNfcAdapter) == false){
             dialogo.Confirm(MainActivity.this, "NFC Desactivado", "¿Desea activar NFC?", "No", "Si",
                     R.drawable.ic_launcher, okProcess(), cancelProcess());
              }
 
-            Boolean read = nfcClass.handleIntent(getIntent());
+        Boolean read = nfcClass.handleIntent(getIntent());
+
             if (read) {
              new NdefReaderTask().execute(NFC.tag);
            }
-
         }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initUI();
-
-
-
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         initUI();
-
     }
 
     /**
-     * Proceso para la confirmacion del mensaje.
+     * TODO:Proceso para la confirmacion del mensaje.
      */
     public Runnable okProcess(){
         return new Runnable() {
@@ -85,7 +74,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     /**
-     * Proceso para Cancelación del mensaje.
+     * TODO:Proceso para Cancelación del mensaje.
      */
     public Runnable cancelProcess(){
         return new Runnable() {
@@ -100,12 +89,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        /**
-         * It's important, that the activity is in the foreground (resumed). Otherwise
-         * an IllegalStateException is thrown.
-         */
-        NFC.setupForegroundDispatch(MainActivity.this, mNfcAdapter);
 
+        NFC.setupForegroundDispatch(MainActivity.this, mNfcAdapter);
     }
 
     @Override
@@ -128,11 +113,8 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-   // ReaderActivity readerActivity = new ReaderActivity();
-   // ReaderOnlineActivity readerOnlineActivity = new ReaderOnlineActivity();
-   // AuthorizeActivity authorizeActivity = new AuthorizeActivity();
     /**
-     * Proceso para obtener los datos de la tarjeta.
+     * TODO: Proceso para obtener los datos de la tarjeta.
      */
     private class NdefReaderTask extends AsyncTask<Tag, Void, String> {
 
@@ -146,6 +128,7 @@ public class MainActivity extends ActionBarActivity {
         protected String doInBackground(Tag... params) {
             Tag tag = params[0];
 
+            //TODO: Verificacion de NDEF tag
             Ndef ndef = Ndef.get(tag);
             if (ndef == null) {
                 // NDEF is not supported by this Tag.
@@ -159,11 +142,14 @@ public class MainActivity extends ActionBarActivity {
                 for (NdefRecord ndefRecord : records) {
 
                     if (ndefRecord.getTnf() == NdefRecord.TNF_MIME_MEDIA && Arrays.equals(ndefRecord.getType(), NFC.MIMETYPE)) {
-                        try {
+                        try
+                         {
                             return readText(ndefRecord);
-                        } catch (UnsupportedEncodingException e) {
-                            Log.e(TAG, "Unsupported Encoding", e);
-                        }
+                         }
+                          catch (UnsupportedEncodingException e)
+                          {
+                             Log.e(TAG, "Unsupported Encoding", e);
+                          }
                     }
                 }
             }
@@ -171,6 +157,7 @@ public class MainActivity extends ActionBarActivity {
         }
 
         private String readText(NdefRecord record) throws UnsupportedEncodingException {
+           //TODO: Obtencion y conversión de datos
             byte[] payload = record.getPayload();
             return new String(payload);
         }
@@ -179,6 +166,7 @@ public class MainActivity extends ActionBarActivity {
         protected void onPostExecute(String result) {
             if (result != null) {
                 try{
+                    //TODO: Arreglos y asignaciones de datos
                     String [] Arreglo = result.split(";");
 
                     DataAccess.tagID = new BigInteger(Arreglo[0]);
@@ -189,6 +177,7 @@ public class MainActivity extends ActionBarActivity {
                     DataAccess.Plan = Arreglo[5];
                     DataAccess.FechaNac = Arreglo[6];
 
+                    //TODO: Timer para el tiempo de duración en cada actividad
                     if ( ReaderActivity.timerTask!=null)
                     {
                         ReaderActivity.timerTask.cancel();
@@ -201,8 +190,7 @@ public class MainActivity extends ActionBarActivity {
                     {
                         AuthorizeActivity.timerTask.cancel();
                     }
-
-
+                    //TODO: llamada de la actividad ReaderActivity
                     Intent in = new Intent(MainActivity.this, ReaderActivity.class);
                     in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     in.putExtra("EXIT", true);
@@ -223,25 +211,5 @@ public class MainActivity extends ActionBarActivity {
             }
         }
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
 }

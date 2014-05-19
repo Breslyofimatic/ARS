@@ -9,17 +9,12 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ofimatic.library.TimeOutApp;
-
-import org.json.JSONObject;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -34,7 +29,6 @@ public class ReaderOnlineActivity extends ActionBarActivity {
     TextView nopoliza;
     TextView nombre;
     TextView cliente;
-    TextView activo;
     TextView plan;
     TextView nss;
     TextView tiposangre;
@@ -86,7 +80,7 @@ public class ReaderOnlineActivity extends ActionBarActivity {
 
 
         try {
-
+               //Verifica si esta activo o inactivo
             if (DataAccess.Activo == 1)
             {
                 iconFechaCorrectaFPM.setVisibility(View.VISIBLE);
@@ -109,6 +103,7 @@ public class ReaderOnlineActivity extends ActionBarActivity {
             e.printStackTrace();
             Toast msj = Toast.makeText(this, getString(R.string.ErrorSystem), Toast.LENGTH_LONG);
             msj.setGravity(Gravity.CENTER,0,0);
+            msj.show();
             finish();
         }
 
@@ -142,13 +137,11 @@ public class ReaderOnlineActivity extends ActionBarActivity {
 
     public void AutorizarServ (View v)
     {
-//        Intent intent = new Intent(ReaderOnlineActivity.this, AuthorizeActivity.class);
-//        startActivity(intent);
         new GetAfiliado().execute((Void[]) null);
     }
 
     /**
-     * Proceso para obtener los datos de una persona.
+     * TODO: Proceso para obtener los datos de una persona.
      */
     class GetAfiliado extends AsyncTask<Void, Void, Void> {
 
@@ -169,9 +162,8 @@ public class ReaderOnlineActivity extends ActionBarActivity {
         protected Void doInBackground(Void ... arg0) {
             // Actualiza la UI desde un hilo
             try {
-                //DataAccess.noPoliza = NFC.Arreglo[0];
-                JSONObject json =  dataAccess.getAllServices(ReaderOnlineActivity.this);
-                JSONObject jsonMedics = dataAccess.getAllMedic(ReaderOnlineActivity.this);
+               dataAccess.getAllServices(ReaderOnlineActivity.this);
+               dataAccess.getAllMedic(ReaderOnlineActivity.this);
                 error= "";
             }
             catch(Exception e)  {
@@ -190,11 +182,9 @@ public class ReaderOnlineActivity extends ActionBarActivity {
                 if (error=="")
                 {
                     if (DataAccess.encontrado){
-
                             timerTask.cancel();
                             Intent intent = new Intent(ReaderOnlineActivity.this, AuthorizeActivity.class);
                             startActivity(intent);
-
                     }
                     else {
                         Toast msj = Toast.makeText(ReaderOnlineActivity.this, getString(R.string.NotFound), Toast.LENGTH_LONG);
@@ -212,24 +202,5 @@ public class ReaderOnlineActivity extends ActionBarActivity {
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.reader_online, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
 }

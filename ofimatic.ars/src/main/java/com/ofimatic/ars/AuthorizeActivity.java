@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
@@ -24,9 +22,6 @@ import android.widget.Toast;
 
 import com.ofimatic.library.DialogHandler;
 import com.ofimatic.library.TimeOutApp;
-
-import org.json.JSONObject;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -50,14 +45,13 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
     public static TimerTask timerTask;
 
     private void initUI(){
-
         setContentView(R.layout.activity_authorize);
 
-            //Timer para la Aplicación
+        //TODO:Timer para la Aplicación
         Timer timer = new Timer();
         timerTask = new TimeOutApp(AuthorizeActivity.this, MainActivity.class);
         timer.schedule(timerTask, 60000);
-
+        //TODO:Spinner Medicos y Servicios
         spinServices = (Spinner) findViewById(R.id.SpinServicios);
         spinMedics = (Spinner) findViewById(R.id.SpinMedicos);
         monto = (EditText) findViewById(R.id.editTextMonto);
@@ -70,14 +64,10 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
 
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initUI();
-
-       // ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,R.layout.row, DataAccess.medicNames);
-
     }
 
     @Override
@@ -92,19 +82,16 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
         super.onPause();
     }
 
-
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         initUI();
-
     }
 
-    public void bottonProcesar(View view)
+    public void buttonProcesar(View view)
     {
          DataAccess.idServicio = servicesID;
          dataAccess.idMedico = idMedico;
          dataAccess.montoServicio = monto.getText().toString();
-
 
         dialogo.Confirm(AuthorizeActivity.this, "Autorizacion", "¿Esta seguro que desea autorizar este servicio?", "No", "Si",
                 R.drawable.ic_launcher, okProcess(), cancelProcess());
@@ -124,7 +111,7 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
     }
 
     /**
-     * Proceso para Cancelación del mensaje.
+     * TODO:Proceso para Cancelación del mensaje.
      */
     public Runnable cancelProcess(){
         return new Runnable() {
@@ -133,9 +120,8 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
         };
     }
 
-
     /**
-     * Procesa el pago del servicio.
+     * TODO:Procesa el pago del servicio.
      */
     class GetProcedure extends AsyncTask<Void, Void, Void> {
 
@@ -154,14 +140,13 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
         }
 
         protected Void doInBackground(Void ... arg0) {
-            // Actualiza la UI desde un hilo
+
+            //TODO: Autoriza los pagos
             try {
-                //DataAccess.noPoliza = NFC.Arreglo[0];
-                JSONObject json =  dataAccess.getPayAuthorize(AuthorizeActivity.this);
+                dataAccess.getPayAuthorize(AuthorizeActivity.this);
                 error= "";
             }
             catch(Exception e)  {
-
                 error= "Error de conexion";
             }
             return null;
@@ -180,7 +165,6 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
                         timerTask.cancel();
                         Intent intent = new Intent(AuthorizeActivity.this, ResultActivity.class);
                         startActivity(intent);
-
                     }
                     else {
                         Toast msj = Toast.makeText(AuthorizeActivity.this, getString(R.string.NotProcess), Toast.LENGTH_LONG);
@@ -202,7 +186,7 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
 
         final int spinIdServ = R.id.SpinServicios;
         final int spinIdMed = R.id.SpinMedicos;
-
+        //switch para elegir el servicio y dependiendo el servicio saldran los medicos.
         switch (parentView.getId()) {
             case spinIdServ:
                 servicesID = dataAccess.findServicesID(position);
@@ -254,7 +238,6 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
                 }
                 break;
         }
-
     }
 
     @Override
@@ -269,14 +252,11 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
 
         @Override
         public View getDropDownView(int position, View convertView,ViewGroup parent) {
-           // spinServices.getSelectedItemPosition();
-
             return getCustomView(position, convertView, parent);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-
             return getCustomView(position, convertView, parent);
         }
 
@@ -315,85 +295,20 @@ public class AuthorizeActivity extends ActionBarActivity implements AdapterView.
             TextView label=(TextView)row.findViewById(R.id.Nombre);
             label.setText(nombresMedicos[position] );
 
-//            TextView IDlabel =(TextView)row.findViewById(R.id.ID);
-//            IDlabel.setText(DataAccess.medicNames[position] );
-
             return row;
         }
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
+        //TODO:Evento KEY (Done) en el teclado.
         switch (keyCode) {
             case KeyEvent.KEYCODE_ENTER:
-                bottonProcesar(new View(AuthorizeActivity.this));
+                buttonProcesar(new View(AuthorizeActivity.this));
                 return true;
             default:
                 return super.onKeyUp(keyCode, event);
         }
-    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.authorize, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
-    public class CustomTimerTask extends TimerTask {
-
-        private Context context;
-
-        // Write Custom Constructor to pass Context
-        public CustomTimerTask(Context con) {
-            this.context = con;
-        }
-
-        Handler  mHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-
-                String mString=(String)msg.obj;
-                Toast toast =  Toast.makeText(context, mString, Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER,0,0);
-                toast.show();
-            }
-        };
-
-        @Override
-        public void run() {
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-
-                    Message msg = new Message();
-                    msg.obj = "La Sección Expiró";
-                    mHandler.sendMessage(msg);
-                    Intent intent = new Intent(context, MainActivity.class);
-                    startActivity(intent);
-                }
-            }).start();
-
-            super.cancel();
-
-        }
-
-
-
     }
 
 }

@@ -9,19 +9,13 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.ofimatic.library.NFC;
 import com.ofimatic.library.TimeOutApp;
-
-import org.json.JSONObject;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -43,11 +37,9 @@ public class ReaderActivity extends ActionBarActivity {
     public static TimerTask timerTask;
 
     private void initUI(){
-
         setContentView(R.layout.activity_reader);
 
         StrictMode.enableDefaults();
-
 
         //Timer para la Aplicación
         Timer timer = new Timer();
@@ -73,7 +65,7 @@ public class ReaderActivity extends ActionBarActivity {
         fechanactv.setText(DataAccess.FechaNac);
 
         try{
-
+                //Validacion del tag ID
             if (NFC.CardID.equals(DataAccess.tagID))
             {
                 iconFechaCorrectatab1.setVisibility(View.VISIBLE);
@@ -91,7 +83,7 @@ public class ReaderActivity extends ActionBarActivity {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Toast msj = Toast.makeText(ReaderActivity.this, getString(R.string.Corrupta), Toast.LENGTH_LONG);
+            Toast msj = Toast.makeText(ReaderActivity.this, getString(R.string.Invalida), Toast.LENGTH_LONG);
             msj.setGravity(Gravity.CENTER,0,0);
             msj.show();
             finish();
@@ -128,7 +120,7 @@ public class ReaderActivity extends ActionBarActivity {
     }
 
     /**
-     * Proceso para obtener los datos de una persona.
+     * TODO: Proceso para obtener los datos de una persona.
      */
     class GetAfiliado extends AsyncTask<Void, Void, Void> {
 
@@ -149,7 +141,6 @@ public class ReaderActivity extends ActionBarActivity {
         protected Void doInBackground(Void ... arg0) {
             // Actualiza la UI desde un hilo
             try {
-                //DataAccess.noPoliza = NFC.Arreglo[0];
                 dataAccess.getProfile(ReaderActivity.this);
                 error= "";
             }
@@ -199,25 +190,4 @@ public class ReaderActivity extends ActionBarActivity {
             }
         }
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.reader, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
 }

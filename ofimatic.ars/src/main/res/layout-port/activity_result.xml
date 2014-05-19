@@ -8,7 +8,7 @@
 
 
     <ScrollView android:id="@+id/ScrollViewRes"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fillViewport="true"
         android:fadeScrollbars="false"
@@ -32,192 +32,17 @@
                 android:scrollbars="none"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+
                 />
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="ARS"-->
-                <!--android:id="@+id/textViewARS"-->
-                <!--android:layout_marginTop="40dp"-->
-                <!--android:layout_alignParentTop="true"-->
-                <!--android:layout_centerHorizontal="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="FECHA:"-->
-                <!--android:id="@+id/textViewFECHA"-->
-                <!--android:layout_below="@+id/textViewARS"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:layout_marginRight="46dp" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="FECHAVALUE"-->
-                <!--android:id="@+id/textViewFECHAVALUE"-->
-                <!--android:layout_below="@+id/textViewFECHA"-->
-                <!--android:layout_alignLeft="@+id/textViewFECHA"-->
-                <!--android:layout_alignStart="@+id/textViewFECHA" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="APROBACION NO.:"-->
-                <!--android:id="@+id/textViewAPROBACION"-->
-                <!--android:layout_below="@+id/textViewFECHAVALUE"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="APROBACIONVALUE"-->
-                <!--android:id="@+id/textViewAPROBACIONVALUE"-->
-                <!--android:layout_below="@+id/textViewAPROBACION"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="AFILIADO NO.:"-->
-                <!--android:id="@+id/textViewAFILIADO"-->
-                <!--android:layout_below="@+id/textViewAPROBACIONVALUE"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="AFILIADOVALUE"-->
-                <!--android:id="@+id/textViewAFILIADOVALUE"-->
-                <!--android:layout_below="@+id/textViewAFILIADO"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="NOMBRE:"-->
-                <!--android:id="@+id/textViewNOMBRE"-->
-                <!--android:layout_below="@+id/textViewAFILIADOVALUE"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="NOMBREVALUE"-->
-                <!--android:id="@+id/textViewNOMBREVALUE"-->
-                <!--android:layout_below="@+id/textViewNOMBRE"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="SERVICIO:"-->
-                <!--android:id="@+id/textViewSERVICIO"-->
-                <!--android:layout_below="@+id/textViewNOMBREVALUE"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="SERVICIOVALUE"-->
-                <!--android:id="@+id/textViewSERVICIOVALUE"-->
-                <!--android:layout_below="@+id/textViewSERVICIO"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="MEDICO:"-->
-                <!--android:id="@+id/textViewMEDICO"-->
-                <!--android:layout_below="@+id/textViewSERVICIOVALUE"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="MEDICOVALUE"-->
-                <!--android:id="@+id/textViewMEDICOVALUE"-->
-                <!--android:layout_below="@+id/textViewMEDICO"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="MONTO:"-->
-                <!--android:id="@+id/textViewMONTO"-->
-                <!--android:layout_below="@+id/textViewMEDICOVALUE"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="MONTOVALUE"-->
-                <!--android:id="@+id/textViewMONTOVALUE"-->
-                <!--android:layout_below="@+id/textViewMONTO"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="DESCUENTO:"-->
-                <!--android:id="@+id/textViewDESCUENTO"-->
-                <!--android:layout_below="@+id/textViewMONTOVALUE"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="DESCUENTOVALUE"-->
-                <!--android:id="@+id/textViewDESCUENTOVALUE"-->
-                <!--android:layout_below="@+id/textViewDESCUENTO"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="MONTO A PAGAR:"-->
-                <!--android:id="@+id/textViewMONTOAPAGAR"-->
-                <!--android:layout_below="@+id/textViewDESCUENTOVALUE"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="MONTOAPAGARVALUE"-->
-                <!--android:id="@+id/textViewMONTOAPAGARVALUE"-->
-                <!--android:layout_below="@+id/textViewMONTOAPAGAR"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true" />-->
-
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:id="@+id/printbtn"
-                android:text="Imprimir"
-                android:background="@drawable/mybuttons"
-                android:onClick="TestPrint"
-                android:layout_alignParentBottom="true" />
 
         </RelativeLayout>
     </ScrollView>
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/print"
+        android:fitsSystemWindows="true"
+        android:onClick="TestPrint"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

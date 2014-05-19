@@ -102,7 +102,7 @@
                 android:textAlignment="center"
                 android:textSize="26sp"
                 android:textStyle="bold"
-                android:onClick="bottonProcesar"
+                android:onClick="buttonProcesar"
                 android:background="@drawable/mybuttons"/>
 
         </RelativeLayout>

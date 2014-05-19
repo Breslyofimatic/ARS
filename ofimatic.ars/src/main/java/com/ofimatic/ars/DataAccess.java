@@ -5,9 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.util.Log;
-
 import com.ofimatic.library.JsonParser;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -72,7 +70,6 @@ public class DataAccess {
     protected static String nombreServicio;
     protected static String idMedico;
     protected static String nombreMedico;
-   // protected static String monto;
 
     protected static Integer noAprobacion;
     protected static String montoServicio;
@@ -98,7 +95,7 @@ public class DataAccess {
 
 
     /**
-     * Obtiene la informacion del documento consultado.
+     * TODO: Obtiene la informacion del documento consultado.
      */
     public JSONObject getProfile(Context context)
     {
@@ -159,13 +156,11 @@ public class DataAccess {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
-
         return jsonObject;
     }
 
-
     /**
-     * Obtiene la informacion del documento consultado.
+     * TODO: Obtiene la informacion del documento consultado.
      */
     public JSONObject getPayAuthorize(Context context)
     {
@@ -207,7 +202,6 @@ public class DataAccess {
                 descuentoServicio =  jsonPayAuto.getString(TAG_DESCUENTO);
                 montoPagar = jsonPayAuto.getString(TAG_MONTOPAGAR);
                 Fecha = jsonPayAuto.getString(TAG_Fecha);
-
             }
             else{
                 //registro no encontrado
@@ -217,12 +211,11 @@ public class DataAccess {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
-
         return jsonObject;
     }
 
     /**
-     * Obtiene la informacion del documento consultado.
+     *TODO: Obtiene la informacion del documento consultado.
      */
     public JSONObject getAllMedic(Context context)
     {
@@ -247,8 +240,6 @@ public class DataAccess {
                 encontrado=true;
                 // Obtencion del producto.
                 medicoArray = jsonObject.getJSONArray(TAG_MEDICO); // JSON Array
-
-                /*final String[]*/
                 medicNames = new String[medicoArray.length()];
 
                 // looping through All Contacts
@@ -257,26 +248,21 @@ public class DataAccess {
                     JSONObject c = medicoArray.getJSONObject(i);
                     // Storing each json item in variable
                     medicNames[i]=c.getString(TAG_NOMBREMEDICO);
-                    //System.out.println("Hello events "+items);
                 }
-
                }
             else{
                 //registro no encontrado
                 encontrado=false;
             }
-
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
         return jsonObject;
     }
-
-
+    //TODO: Busqueda de los servicios
     public String findServicesID(int index)
     {
         String id;
-
         try{
             JSONObject c = servicesArray.getJSONObject(index);
             id = c.getString(TAG_IDSERVICIO);
@@ -287,17 +273,13 @@ public class DataAccess {
         }
         return  id;
     }
-
+    // TODO: busqueda de los medicos
     public String [] ListMedics(String serviceID)
     {
         List<String> names = new ArrayList<String>();
-
-        //String names[] = new String[medicoArray.length()];
         try{
             for(int i = 0; i < medicoArray.length(); i++){
-
                 JSONObject c = medicoArray.getJSONObject(i);
-
                 if (c.getString(TAG_IDSERVICIO).equals(serviceID)) {
                     names.add(c.getString(TAG_IDMEDICO) + ";" + c.getString(TAG_NOMBREMEDICO));
                 }
@@ -306,26 +288,11 @@ public class DataAccess {
         catch (JSONException e) {
             throw new RuntimeException(e);
         }
-
         return  names.toArray(new String[names.size()]);
     }
 
-   /* public String findMedicID(int index)
-    {
-        String id;
-        try{
-            JSONObject c = medicoArray.getJSONObject(index);
-            id = c.getString(TAG_IDMEDICO);
-        }
-        catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-
-        return  id;
-    }*/
-
     /**
-     * Obtiene la informacion del documento consultado.
+     * TODO: Obtiene la informacion del documento consultado.
      */
     public JSONObject getAllServices(Context context)
     {

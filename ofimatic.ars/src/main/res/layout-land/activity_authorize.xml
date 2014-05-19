@@ -31,7 +31,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textStyle="bold"
-                android:onClick="bottonProcesar"
+                android:onClick="buttonProcesar"
                 android:background="@drawable/mybuttons"/>
             </RelativeLayout>
 
