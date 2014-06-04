@@ -26,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
    DialogHandler dialogo = new DialogHandler();
    protected final String TAG = "NfcDemo";
    private NfcAdapter mNfcAdapter;
-
+//cambio prueba
     private void initUI() {
         //creando layout
         setContentView(R.layout.activity_main);
