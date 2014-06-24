@@ -32,8 +32,8 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         //Instanciacion de NFC
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        NFC.MIME_TEXT_PLAIN = "application/com.ofimatic.ars";
-        NFC.MIMETYPE = "application/com.ofimatic.ars".getBytes();
+        NFC.MIME_TEXT_PLAIN = "application/barias.pruebanfc";
+        NFC.MIMETYPE = "application/barias.pruebanfc".getBytes();
 
         //TODO: Se verifica si el NFC esta activado
         if (nfcClass.VerificationNFC(mNfcAdapter) == false){
